@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowCapture
 {
@@ -30,7 +31,9 @@ namespace WindowCapture
         private void save_Click(object sender, EventArgs e)
         {
             Image x = savePic.Image;
-            x.Save(@"C:\button.Jpeg", ImageFormat.Jpeg);
+            //File.WriteAllText("C:\\Users", "empty");
+            x.Save("C:\\Users\\button.jpg", ImageFormat.Jpeg);
+            x.Dispose();
         }
     }
 }

@@ -88,9 +88,9 @@ namespace WindowCapture
                 proc1 = Process.GetProcessesByName("notepad")[0];
                 pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
 
-                if (Process.GetProcessesByName("wechat").Length > 0)
+                if (Process.GetProcessesByName("cmd").Length > 0)
                 {
-                    proc2 = Process.GetProcessesByName("wechat")[0];
+                    proc2 = Process.GetProcessesByName("cmd")[0];
                     pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);
                 }
                 if (Process.GetProcessesByName("steam").Length > 0)
@@ -109,7 +109,7 @@ namespace WindowCapture
 
             else
             {
-                //timer1.Stop();
+                timer1.Stop();
                 MessageBox.Show("can not find process: " + "steam"); //"steam" change to process name variable
                 
             }
@@ -140,6 +140,12 @@ namespace WindowCapture
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void setting_Click(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3();
+            f3.Show();
         }
     }
 }
