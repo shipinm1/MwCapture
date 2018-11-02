@@ -79,25 +79,38 @@ namespace WindowCapture
         private void timer1_Tick(object sender, EventArgs e)
         {
             //Get_source();
-            Process proc = null;
+            Process proc1 = null;
+            Process proc2 = null;
+            Process proc3 = null;
 
-            if (Process.GetProcessesByName("notepad").Length >1)
+            if (Process.GetProcessesByName("notepad").Length > 0)
             {
-                proc = Process.GetProcessesByName("notepad")[0];
-                pictureBox1.Image = CaptureApplication(proc.MainWindowHandle);
-                pictureBox2.Image = CaptureApplication(proc.MainWindowHandle);
-                pictureBox3.Image = CaptureApplication(proc.MainWindowHandle);
+                proc1 = Process.GetProcessesByName("notepad")[0];
+                pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
 
-                if (IsIconic(proc.MainWindowHandle))
+                if (Process.GetProcessesByName("wechat").Length > 0)
+                {
+                    proc2 = Process.GetProcessesByName("wechat")[0];
+                    pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);
+                }
+                if (Process.GetProcessesByName("steam").Length > 0)
+                {
+                    proc3 = Process.GetProcessesByName("steam")[0];
+                    pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
+                }
+
+                if (IsIconic(proc1.MainWindowHandle))
                 {
                     // MessageBox.Show("iconic");
-                    ShowWindow(proc.MainWindowHandle, 9);
+                    ShowWindow(proc1.MainWindowHandle, 9);
                 }
             }
+
+
             else
             {
-                timer1.Stop();
-                MessageBox.Show("can not find process");
+                //timer1.Stop();
+                MessageBox.Show("can not find process: " + "steam"); //"steam" change to process name variable
                 
             }
             
@@ -122,6 +135,11 @@ namespace WindowCapture
             Bitmap save = CaptureApplication(this.Handle);
             f2.SetPic(save);
             f2.Show();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -35,17 +35,20 @@
             // 
             // savePic
             // 
-            this.savePic.Location = new System.Drawing.Point(220, 39);
+            this.savePic.Location = new System.Drawing.Point(110, 20);
+            this.savePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.savePic.Name = "savePic";
-            this.savePic.Size = new System.Drawing.Size(760, 721);
+            this.savePic.Size = new System.Drawing.Size(1138, 789);
+            this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.savePic.TabIndex = 0;
             this.savePic.TabStop = false;
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(480, 808);
+            this.save.Location = new System.Drawing.Point(16, 20);
+            this.save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(181, 90);
+            this.save.Size = new System.Drawing.Size(90, 47);
             this.save.TabIndex = 1;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
@@ -53,11 +56,12 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1274, 951);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.save);
             this.Controls.Add(this.savePic);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
