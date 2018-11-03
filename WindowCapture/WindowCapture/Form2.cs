@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Encoder = System.Drawing.Imaging.Encoder;
+//using Word = Microsoft.Office.Interop.Word;
+
 
 namespace WindowCapture
 {
@@ -40,7 +42,7 @@ namespace WindowCapture
             //Saved path should be changed to user input
             //100 quality jpeg file
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
-            x.Save(@"c:\Users\gsp\Desktop\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
+            x.Save(@"c:\Users\yan\Desktop\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
             x.Dispose();
             savePic.Image.Dispose();
             MessageBox.Show("Image Saved");
@@ -51,6 +53,11 @@ namespace WindowCapture
         {
             this.Close();
             savePic.Image.Dispose();
+        }
+
+        private void test_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
