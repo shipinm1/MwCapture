@@ -48,10 +48,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(242, 46);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(121, 24);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2080, 1485);
+            this.pictureBox1.Size = new System.Drawing.Size(1024, 576);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -59,10 +59,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(22, 46);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(11, 24);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(212, 119);
+            this.button1.Size = new System.Drawing.Size(106, 62);
             this.button1.TabIndex = 2;
             this.button1.Text = "LOAD";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,10 +71,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(22, 173);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(11, 90);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(212, 119);
+            this.button2.Size = new System.Drawing.Size(106, 62);
             this.button2.TabIndex = 3;
             this.button2.Text = "PAUSE";
             this.button2.UseVisualStyleBackColor = true;
@@ -88,10 +88,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(2346, 46);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(1173, 24);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(1332, 856);
+            this.pictureBox2.Size = new System.Drawing.Size(666, 445);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
@@ -99,10 +99,10 @@
             // capture
             // 
             this.capture.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.capture.Location = new System.Drawing.Point(22, 471);
-            this.capture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.capture.Location = new System.Drawing.Point(11, 245);
+            this.capture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.capture.Name = "capture";
-            this.capture.Size = new System.Drawing.Size(212, 110);
+            this.capture.Size = new System.Drawing.Size(106, 57);
             this.capture.TabIndex = 5;
             this.capture.Text = "CAPTURE";
             this.capture.UseVisualStyleBackColor = true;
@@ -112,10 +112,10 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(2346, 965);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Location = new System.Drawing.Point(1173, 502);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1332, 856);
+            this.pictureBox3.Size = new System.Drawing.Size(666, 445);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
@@ -124,10 +124,9 @@
             // 
             this.exitButton.BackColor = System.Drawing.Color.Red;
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.exitButton.Location = new System.Drawing.Point(22, 1858);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.exitButton.Location = new System.Drawing.Point(11, 858);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(278, 121);
+            this.exitButton.Size = new System.Drawing.Size(139, 63);
             this.exitButton.TabIndex = 7;
             this.exitButton.Text = "EXIT";
             this.exitButton.UseVisualStyleBackColor = false;
@@ -136,10 +135,10 @@
             // setting
             // 
             this.setting.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.setting.Location = new System.Drawing.Point(22, 1073);
-            this.setting.Margin = new System.Windows.Forms.Padding(4);
+            this.setting.Location = new System.Drawing.Point(11, 558);
+            this.setting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.setting.Name = "setting";
-            this.setting.Size = new System.Drawing.Size(212, 110);
+            this.setting.Size = new System.Drawing.Size(106, 57);
             this.setting.TabIndex = 8;
             this.setting.Text = "Setting";
             this.setting.UseVisualStyleBackColor = true;
@@ -147,9 +146,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2740, 1783);
+            this.ClientSize = new System.Drawing.Size(1904, 981);
             this.Controls.Add(this.setting);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.pictureBox3);
@@ -158,9 +157,10 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

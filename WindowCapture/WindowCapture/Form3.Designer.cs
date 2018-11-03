@@ -35,17 +35,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 53);
+            this.label1.Location = new System.Drawing.Point(22, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 25);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Save to: ";
             // 
             // choose
             // 
-            this.choose.Location = new System.Drawing.Point(610, 53);
+            this.choose.Location = new System.Drawing.Point(305, 28);
+            this.choose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.choose.Name = "choose";
-            this.choose.Size = new System.Drawing.Size(124, 41);
+            this.choose.Size = new System.Drawing.Size(62, 21);
             this.choose.TabIndex = 1;
             this.choose.Text = "choose";
             this.choose.UseVisualStyleBackColor = true;
@@ -53,11 +55,12 @@
             // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(529, 388);
             this.Controls.Add(this.choose);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form3";
             this.Text = "Form3";
             this.ResumeLayout(false);

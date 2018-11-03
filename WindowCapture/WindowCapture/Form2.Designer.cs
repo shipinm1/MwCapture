@@ -30,13 +30,14 @@
         {
             this.savePic = new System.Windows.Forms.PictureBox();
             this.save = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.savePic)).BeginInit();
             this.SuspendLayout();
             // 
             // savePic
             // 
             this.savePic.Location = new System.Drawing.Point(110, 20);
-            this.savePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.savePic.Margin = new System.Windows.Forms.Padding(2);
             this.savePic.Name = "savePic";
             this.savePic.Size = new System.Drawing.Size(1138, 789);
             this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -46,7 +47,7 @@
             // save
             // 
             this.save.Location = new System.Drawing.Point(16, 20);
-            this.save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.save.Margin = new System.Windows.Forms.Padding(2);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(90, 47);
             this.save.TabIndex = 1;
@@ -54,14 +55,25 @@
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(16, 92);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(90, 50);
+            this.cancelButton.TabIndex = 2;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.save);
             this.Controls.Add(this.savePic);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -74,5 +86,6 @@
 
         private System.Windows.Forms.PictureBox savePic;
         private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

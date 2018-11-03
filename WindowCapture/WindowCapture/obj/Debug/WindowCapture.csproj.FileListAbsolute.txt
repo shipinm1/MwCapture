@@ -32,3 +32,4 @@ C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\Wi
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form3.resources
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form3.resources

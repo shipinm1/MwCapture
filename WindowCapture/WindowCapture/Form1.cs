@@ -83,9 +83,9 @@ namespace WindowCapture
             Process proc2 = null;
             Process proc3 = null;
 
-            if (Process.GetProcessesByName("notepad").Length > 0)
+            if (Process.GetProcessesByName("devenv").Length > 0)
             {
-                proc1 = Process.GetProcessesByName("notepad")[0];
+                proc1 = Process.GetProcessesByName("devenv")[0];
                 pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
 
                 if (Process.GetProcessesByName("cmd").Length > 0)
@@ -93,9 +93,9 @@ namespace WindowCapture
                     proc2 = Process.GetProcessesByName("cmd")[0];
                     pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);
                 }
-                if (Process.GetProcessesByName("steam").Length > 0)
+                if (Process.GetProcessesByName("notepad").Length > 0)
                 {
-                    proc3 = Process.GetProcessesByName("steam")[0];
+                    proc3 = Process.GetProcessesByName("notepad")[0];
                     pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
                 }
 
@@ -122,6 +122,9 @@ namespace WindowCapture
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+            string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
+            //Debug.WriteLine(sTime);
+            //Debug.WriteLine("c:\\Users\\gsp\\Desktop\\test_" + DateTime.Now + ".jpg");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -146,6 +149,11 @@ namespace WindowCapture
         {
             Form3 f3 = new Form3();
             f3.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
