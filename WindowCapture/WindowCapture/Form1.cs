@@ -21,7 +21,9 @@ namespace WindowCapture
         {
             InitializeComponent();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+
         }
 
         //private void StartProcess_Click(object sender, EventArgs e)
