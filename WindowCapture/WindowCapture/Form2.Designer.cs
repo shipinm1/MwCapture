@@ -37,20 +37,20 @@
             // 
             // savePic
             // 
-            this.savePic.Location = new System.Drawing.Point(220, 38);
-            this.savePic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.savePic.Location = new System.Drawing.Point(110, 20);
+            this.savePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.savePic.Name = "savePic";
-            this.savePic.Size = new System.Drawing.Size(2276, 1517);
+            this.savePic.Size = new System.Drawing.Size(1138, 789);
             this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.savePic.TabIndex = 0;
             this.savePic.TabStop = false;
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(32, 38);
-            this.save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.save.Location = new System.Drawing.Point(16, 20);
+            this.save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(180, 90);
+            this.save.Size = new System.Drawing.Size(90, 47);
             this.save.TabIndex = 1;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
@@ -58,10 +58,9 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(32, 177);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cancelButton.Location = new System.Drawing.Point(16, 92);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(180, 96);
+            this.cancelButton.Size = new System.Drawing.Size(90, 50);
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -69,10 +68,10 @@
             // 
             // test
             // 
-            this.test.Location = new System.Drawing.Point(32, 465);
-            this.test.Margin = new System.Windows.Forms.Padding(4);
+            this.test.Location = new System.Drawing.Point(16, 242);
+            this.test.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(180, 90);
+            this.test.Size = new System.Drawing.Size(90, 47);
             this.test.TabIndex = 3;
             this.test.Text = "test";
             this.test.UseVisualStyleBackColor = true;
@@ -80,14 +79,14 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2740, 1783);
+            this.ClientSize = new System.Drawing.Size(1370, 619);
             this.Controls.Add(this.test);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.save);
             this.Controls.Add(this.savePic);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
