@@ -17,6 +17,7 @@ namespace WindowCapture
 {
     public partial class Form2 : Form
     {
+        private string location;
         public Form2()
         {
             InitializeComponent();
@@ -36,17 +37,26 @@ namespace WindowCapture
             var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
             var encParams = new EncoderParameters() { Param = new[] { new EncoderParameter(Encoder.Quality, 100L) } };
             //image.Save(path, encoder, encParams);
-
+            location = Form3.pictureSaveLocation;
             Image x = savePic.Image;
             //File.WriteAllText("C:\\Users", "empty");
             //Saved path should be changed to user input
             //100 quality jpeg file
+            
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
-            x.Save(@"c:\Users\yan\Desktop\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
-            x.Dispose();
-            savePic.Image.Dispose();
-            MessageBox.Show("Image Saved");
-            this.Close();
+            if (location != null)
+            {
+                x.Save(@Form3.pictureSaveLocation + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
+                x.Dispose();
+                savePic.Image.Dispose();
+                MessageBox.Show("Image Saved");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid File Location\n\nPicture Saving Failed");
+                this.Close();
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -58,6 +68,11 @@ namespace WindowCapture
         private void test_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

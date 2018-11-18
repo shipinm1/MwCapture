@@ -14,7 +14,7 @@ namespace WindowCapture
     public partial class Form3 : Form
     {
         //private string saveLocation = "";
-
+        public static string pictureSaveLocation { get; set; }
 
         public Form3()
         {
@@ -36,6 +36,7 @@ namespace WindowCapture
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 saveLocation.Text = fbd.SelectedPath;
+                pictureSaveLocation = fbd.SelectedPath;
                 
             }
 
@@ -99,10 +100,15 @@ namespace WindowCapture
         
         private void saveLocation_TextChanged(object sender, EventArgs e)
         {
-
+            pictureSaveLocation = saveLocation.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
