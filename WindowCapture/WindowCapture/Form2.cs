@@ -25,7 +25,7 @@ namespace WindowCapture
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            timeTextBox.Text = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss");
         }
 
         public void SetPic(Bitmap bp) {
@@ -73,6 +73,16 @@ namespace WindowCapture
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

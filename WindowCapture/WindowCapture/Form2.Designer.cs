@@ -31,7 +31,7 @@
             this.savePic = new System.Windows.Forms.PictureBox();
             this.save = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.timeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -45,7 +45,7 @@
             // savePic
             // 
             this.savePic.Location = new System.Drawing.Point(548, 92);
-            this.savePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.savePic.Margin = new System.Windows.Forms.Padding(2);
             this.savePic.Name = "savePic";
             this.savePic.Size = new System.Drawing.Size(865, 632);
             this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -56,7 +56,7 @@
             // 
             this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save.Location = new System.Drawing.Point(11, 57);
-            this.save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.save.Margin = new System.Windows.Forms.Padding(2);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(90, 47);
             this.save.TabIndex = 1;
@@ -75,12 +75,13 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // textBox1
+            // timeTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(194, 92);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(135, 20);
-            this.textBox1.TabIndex = 3;
+            this.timeTextBox.Location = new System.Drawing.Point(194, 92);
+            this.timeTextBox.Name = "timeTextBox";
+            this.timeTextBox.Size = new System.Drawing.Size(135, 20);
+            this.timeTextBox.TabIndex = 3;
+            this.timeTextBox.TextChanged += new System.EventHandler(this.timeTextBox_TextChanged);
             // 
             // label1
             // 
@@ -136,16 +137,17 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(191, 297);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 18);
+            this.label4.Size = new System.Drawing.Size(48, 18);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Note";
+            this.label4.Text = "Notes";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(194, 318);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(235, 65);
+            this.textBox4.Size = new System.Drawing.Size(286, 164);
             this.textBox4.TabIndex = 9;
             // 
             // Form2
@@ -160,11 +162,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.timeTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.save);
             this.Controls.Add(this.savePic);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -179,7 +181,7 @@
         private System.Windows.Forms.PictureBox savePic;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox timeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;

@@ -159,6 +159,10 @@ namespace WindowCapture
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default["p1"] = p1Name.Text;
+            Properties.Settings.Default["p2"] = p2Name.Text;
+            Properties.Settings.Default["p3"] = p3Name.Text;
+            Properties.Settings.Default.Save();
             this.Close();
         }
 
@@ -170,7 +174,9 @@ namespace WindowCapture
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            p1Name.Text = Properties.Settings.Default["p1"].ToString();
+            p2Name.Text = Properties.Settings.Default["p2"].ToString();
+            p3Name.Text = Properties.Settings.Default["p3"].ToString();
         }
 
         private void p1Name_TextChanged(object sender, EventArgs e)
@@ -186,6 +192,15 @@ namespace WindowCapture
         private void p3Name_TextChanged(object sender, EventArgs e)
         {
             p3name = p3Name.Text;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default["p1"] = p1Name.Text;
+            Properties.Settings.Default["p2"] = p2Name.Text;
+            Properties.Settings.Default["p3"] = p3Name.Text;
+            Properties.Settings.Default.Save();
+            
         }
     }
 }

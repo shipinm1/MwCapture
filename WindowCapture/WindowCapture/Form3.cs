@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace WindowCapture
 {
     public partial class Form3 : Form
@@ -110,7 +111,21 @@ namespace WindowCapture
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default["pictureLocation"] = saveLocation.Text;
+            Properties.Settings.Default["p1Location"] = p1Location.Text;
+            Properties.Settings.Default["p2Location"] = p2Location.Text;
+            Properties.Settings.Default["p3Location"] = p3Location.Text;
+            Properties.Settings.Default.Save();
             this.Close();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            //Properties.Settings.Default["pictureLocation"] = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            saveLocation.Text = Properties.Settings.Default["pictureLocation"].ToString();
+            p1Location.Text = Properties.Settings.Default["p1Location"].ToString();
+            p2Location.Text = Properties.Settings.Default["p2Location"].ToString();
+            p3Location.Text = Properties.Settings.Default["p3Location"].ToString();
         }
     }
 }
