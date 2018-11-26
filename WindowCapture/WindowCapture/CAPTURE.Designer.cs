@@ -1,6 +1,6 @@
 ﻿namespace WindowCapture
 {
-    partial class Form2
+    partial class CAPTURE
     {
         /// <summary>
         /// Required designer variable.
@@ -44,10 +44,10 @@
             // 
             // savePic
             // 
-            this.savePic.Location = new System.Drawing.Point(548, 92);
+            this.savePic.Location = new System.Drawing.Point(467, 57);
             this.savePic.Margin = new System.Windows.Forms.Padding(2);
             this.savePic.Name = "savePic";
-            this.savePic.Size = new System.Drawing.Size(865, 632);
+            this.savePic.Size = new System.Drawing.Size(530, 469);
             this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.savePic.TabIndex = 0;
             this.savePic.TabStop = false;
@@ -77,7 +77,7 @@
             // 
             // timeTextBox
             // 
-            this.timeTextBox.Location = new System.Drawing.Point(194, 92);
+            this.timeTextBox.Location = new System.Drawing.Point(140, 78);
             this.timeTextBox.Name = "timeTextBox";
             this.timeTextBox.Size = new System.Drawing.Size(135, 20);
             this.timeTextBox.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.PeachPuff;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(191, 71);
+            this.label1.Location = new System.Drawing.Point(137, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 4;
@@ -99,7 +99,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.PeachPuff;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(191, 145);
+            this.label2.Location = new System.Drawing.Point(137, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 18);
             this.label2.TabIndex = 6;
@@ -107,7 +107,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(194, 166);
+            this.textBox2.Location = new System.Drawing.Point(140, 152);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(135, 20);
             this.textBox2.TabIndex = 5;
@@ -117,7 +117,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.PeachPuff;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(191, 219);
+            this.label3.Location = new System.Drawing.Point(137, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 18);
             this.label3.TabIndex = 8;
@@ -125,7 +125,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(194, 240);
+            this.textBox3.Location = new System.Drawing.Point(140, 226);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(135, 20);
             this.textBox3.TabIndex = 7;
@@ -135,7 +135,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.PeachPuff;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(191, 297);
+            this.label4.Location = new System.Drawing.Point(137, 283);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 18);
             this.label4.TabIndex = 10;
@@ -144,17 +144,17 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(194, 318);
+            this.textBox4.Location = new System.Drawing.Point(140, 304);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(286, 164);
             this.textBox4.TabIndex = 9;
             // 
-            // Form2
+            // CAPTURE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 761);
+            this.ClientSize = new System.Drawing.Size(1008, 537);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
@@ -167,8 +167,8 @@
             this.Controls.Add(this.save);
             this.Controls.Add(this.savePic);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "CAPTURE";
+            this.Text = "Capture";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.savePic)).EndInit();
             this.ResumeLayout(false);

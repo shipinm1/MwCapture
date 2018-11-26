@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace WindowCapture
 {
-    public partial class Form3 : Form
+    public partial class SETTING : Form
     {
         //private string saveLocation = "";
         public static string pictureSaveLocation { get; set; }
 
-        public Form3()
+        public SETTING()
         {
             InitializeComponent();
             

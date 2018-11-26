@@ -1,6 +1,6 @@
 ﻿namespace WindowCapture
 {
-    partial class Form3
+    partial class SETTING
     {
         /// <summary>
         /// Required designer variable.
@@ -182,7 +182,7 @@
             this.chooseButtonP1.UseVisualStyleBackColor = true;
             this.chooseButtonP1.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Form3
+            // SETTING
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,8 +202,8 @@
             this.Controls.Add(this.chooseButtonPicture);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form3";
-            this.Text = "Form3";
+            this.Name = "SETTING";
+            this.Text = "Setting";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

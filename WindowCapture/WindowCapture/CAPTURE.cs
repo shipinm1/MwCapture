@@ -15,10 +15,10 @@ using Encoder = System.Drawing.Imaging.Encoder;
 
 namespace WindowCapture
 {
-    public partial class Form2 : Form
+    public partial class CAPTURE : Form
     {
         private string location;
-        public Form2()
+        public CAPTURE()
         {
             InitializeComponent();
         }
@@ -26,6 +26,8 @@ namespace WindowCapture
         private void Form2_Load(object sender, EventArgs e)
         {
             timeTextBox.Text = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss");
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         public void SetPic(Bitmap bp) {
@@ -37,7 +39,7 @@ namespace WindowCapture
             var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
             var encParams = new EncoderParameters() { Param = new[] { new EncoderParameter(Encoder.Quality, 100L) } };
             //image.Save(path, encoder, encParams);
-            location = Form3.pictureSaveLocation;
+            location = SETTING.pictureSaveLocation;
             Image x = savePic.Image;
             //File.WriteAllText("C:\\Users", "empty");
             //Saved path should be changed to user input
@@ -46,7 +48,7 @@ namespace WindowCapture
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
             if (location != null)
             {
-                x.Save(@Form3.pictureSaveLocation + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
+                x.Save(SETTING.pictureSaveLocation + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
                 x.Dispose();
                 savePic.Image.Dispose();
                 MessageBox.Show("Image Saved");

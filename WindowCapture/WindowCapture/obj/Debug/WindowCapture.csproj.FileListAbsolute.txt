@@ -10,8 +10,6 @@ C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\o
 C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb
 C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form2.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
-C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form1.resources
-C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form2.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Properties.Resources.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.GenerateResource.cache
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CoreCompileInputs.cache
@@ -32,4 +30,6 @@ C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\Wi
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
 C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form3.resources
-C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form3.resources
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.MWC.resources
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.CAPTURE.resources
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.SETTING.resources

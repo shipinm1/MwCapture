@@ -13,12 +13,12 @@ using System.Runtime.InteropServices;
 
 namespace WindowCapture
 {
-    public partial class Form1 : Form
+    public partial class MWC : Form
     {
         private string p1name, p2name, p3name;
         static Size e = Screen.PrimaryScreen.Bounds.Size;
         Bitmap temp = new Bitmap(e.Width, e.Height);
-        public Form1()
+        public MWC()
         {
             InitializeComponent();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -77,8 +77,33 @@ namespace WindowCapture
             //return img;
         }
 
+
+        Size formSize = new Size(1920,1080);
         private void timer1_Tick(object sender, EventArgs e)
         {
+            double formHeight = this.Size.Height;
+            double formWidth = this.Size.Width;
+            double ratio = 1.875;
+            double secondaryRatio = 2.75;
+            if (formSize != this.Size)
+            {
+                //Debug.WriteLine(formHeight.ToString(), formWidth.ToString());
+                pictureBox1.Size = new Size((int)(formWidth / ratio), (int)(formHeight / ratio));
+                pictureBox2.Size = new Size((int)(formWidth / secondaryRatio), (int)(formHeight / secondaryRatio));
+                pictureBox3.Size = new Size((int)(formWidth / secondaryRatio), (int)(formHeight / secondaryRatio));
+                pictureBox2.Location = new Point(pictureBox1.Location.X + pictureBox1.Size.Width + 5, 24);
+                pictureBox3.Location = new Point(pictureBox1.Location.X + pictureBox1.Size.Width + 5, 30 + pictureBox2.Size.Height);
+                label1.Location = new Point(label1.Location.X, pictureBox1.Size.Height + 26);
+                label2.Location = new Point(label2.Location.X, pictureBox1.Size.Height + 26);
+                label3.Location = new Point(label3.Location.X, pictureBox1.Size.Height + 26);
+                p1Name.Location = new Point(p1Name.Location.X, pictureBox1.Size.Height + 26);
+                p2Name.Location = new Point(p2Name.Location.X, pictureBox1.Size.Height + 26);
+                p3Name.Location = new Point(p3Name.Location.X, pictureBox1.Size.Height + 26);
+                formSize = this.Size;
+                //Debug.WriteLine(this.Size);
+                //Debug.WriteLine(pictureBox1.Size);
+            }
+           
             //Get_source();
             Process proc1 = null;
             Process proc2 = null;
@@ -151,8 +176,9 @@ namespace WindowCapture
 
         private void capture_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2();
+            CAPTURE f2 = new CAPTURE();
             Bitmap save = CaptureApplication(this.Handle);
+            //Bitmap selectedArea = save.Clone(new System.Drawing.Rectangle(1,2,this.Size.Width, this.Size.Height), save.PixelFormat);
             f2.SetPic(save);
             f2.Show();
         }
@@ -168,7 +194,7 @@ namespace WindowCapture
 
         private void setting_Click(object sender, EventArgs e)
         {
-            Form3 f3 = new Form3();
+            SETTING f3 = new SETTING();
             f3.Show();
         }
 
@@ -177,6 +203,9 @@ namespace WindowCapture
             p1Name.Text = Properties.Settings.Default["p1"].ToString();
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
+            
+            //this.AutoSize = true;
+            //this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         private void p1Name_TextChanged(object sender, EventArgs e)
@@ -187,6 +216,11 @@ namespace WindowCapture
         private void p2Name_TextChanged(object sender, EventArgs e)
         {
             p2name = p2Name.Text;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void p3Name_TextChanged(object sender, EventArgs e)
