@@ -39,8 +39,10 @@ namespace WindowCapture
             var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
             var encParams = new EncoderParameters() { Param = new[] { new EncoderParameter(Encoder.Quality, 100L) } };
             //image.Save(path, encoder, encParams);
-            location = SETTING.pictureSaveLocation;
+            //location = SETTING.pictureSaveLocation;
+            location = Properties.Settings.Default["pictureLocation"].ToString();
             Image x = savePic.Image;
+
             //File.WriteAllText("C:\\Users", "empty");
             //Saved path should be changed to user input
             //100 quality jpeg file
@@ -48,7 +50,7 @@ namespace WindowCapture
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
             if (location != null)
             {
-                x.Save(SETTING.pictureSaveLocation + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
+                x.Save(location + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
                 x.Dispose();
                 savePic.Image.Dispose();
                 MessageBox.Show("Image Saved");

@@ -58,7 +58,7 @@ namespace WindowCapture
 
             gfxBmp.ReleaseHdc(hdcBitmap);
             gfxBmp.Dispose();
-
+            
             return bmp;
             
         }
@@ -151,12 +151,24 @@ namespace WindowCapture
             timer1.Enabled = false;
         }
 
+        private Bitmap cropImage(Bitmap img)
+        {
+            Rectangle cropArea = new Rectangle();
+            cropArea.Width = this.Width - 126;
+            cropArea.Height = this.Height - 41;
+            cropArea.X = 125;
+            cropArea.Y = 40;
+            Debug.WriteLine(this.Size);
+            Bitmap b = new Bitmap(img);
+            return b.Clone(cropArea, b.PixelFormat);
+        }
+
         private void capture_Click(object sender, EventArgs e)
         {
             CAPTURE f2 = new CAPTURE();
             Bitmap save = CaptureApplication(this.Handle);
-            //Bitmap selectedArea = save.Clone(new System.Drawing.Rectangle(1,2,this.Size.Width, this.Size.Height), save.PixelFormat);
-            f2.SetPic(save);
+            
+            f2.SetPic(cropImage(save));
             f2.Show();
         }
 
