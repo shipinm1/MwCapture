@@ -25,9 +25,12 @@ namespace WindowCapture
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            timeTextBox.Text = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss");
+            timeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss");
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            notesTextBox.ScrollBars = ScrollBars.Both;
+            notesTextBox.WordWrap = false;
+            prefixTextBox.Text = Properties.Settings.Default["prefix"].ToString();
         }
 
         public void SetPic(Bitmap bp) {
@@ -50,10 +53,20 @@ namespace WindowCapture
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
             if (location != null)
             {
-                x.Save(location + @"\test_" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
+                x.Save(location + @"\" + prefixTextBox.Text + "-" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
                 x.Dispose();
                 savePic.Image.Dispose();
                 MessageBox.Show("Image Saved");
+                using (StreamWriter sw = File.CreateText(location + @"\" + prefixTextBox.Text + "-" + sTime + ".txt"))
+                {
+                    sw.WriteLine("Time: " + timeTextBox.Text);
+                    sw.WriteLine("Location: " + locationTextBox.Text);
+                    sw.WriteLine("Length: " + lengthTextBox.Text);
+                    sw.WriteLine("Notes: " + notesTextBox.Text);
+                    MessageBox.Show("file stored at: " + location);
+                }
+                Properties.Settings.Default["prefix"] = prefixTextBox.Text;
+                Properties.Settings.Default.Save();
                 this.Close();
             }
             else
@@ -88,5 +101,6 @@ namespace WindowCapture
         {
             
         }
+        
     }
 }

@@ -106,5 +106,17 @@ namespace WindowCapture.Properties {
                 this["p3Location"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("none")]
+        public string prefix {
+            get {
+                return ((string)(this["prefix"]));
+            }
+            set {
+                this["prefix"] = value;
+            }
+        }
     }
 }

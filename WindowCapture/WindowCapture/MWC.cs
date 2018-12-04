@@ -138,9 +138,9 @@ namespace WindowCapture
             if (p1name == "")
                 MessageBox.Show("Process 1 not found or empty");
             if (p2name == "")
-                MessageBox.Show("Process 1 not found or empty");
+                MessageBox.Show("Process 2 not found or empty");
             if (p3name == "")
-                MessageBox.Show("Process 1 not found or empty");
+                MessageBox.Show("Process 3 not found or empty");
             string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
             //Debug.WriteLine(sTime);
             //Debug.WriteLine("c:\\Users\\gsp\\Desktop\\test_" + DateTime.Now + ".jpg");

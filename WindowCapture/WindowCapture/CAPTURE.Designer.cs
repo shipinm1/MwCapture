@@ -34,11 +34,13 @@
             this.timeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.locationTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lengthTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
+            this.prefixLabel = new System.Windows.Forms.Label();
+            this.prefixTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.savePic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,12 +107,12 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Location";
             // 
-            // textBox2
+            // locationTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(140, 152);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(135, 20);
-            this.textBox2.TabIndex = 5;
+            this.locationTextBox.Location = new System.Drawing.Point(140, 152);
+            this.locationTextBox.Name = "locationTextBox";
+            this.locationTextBox.Size = new System.Drawing.Size(135, 20);
+            this.locationTextBox.TabIndex = 5;
             // 
             // label3
             // 
@@ -123,12 +125,12 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Length";
             // 
-            // textBox3
+            // lengthTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(140, 226);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(135, 20);
-            this.textBox3.TabIndex = 7;
+            this.lengthTextBox.Location = new System.Drawing.Point(140, 226);
+            this.lengthTextBox.Name = "lengthTextBox";
+            this.lengthTextBox.Size = new System.Drawing.Size(135, 20);
+            this.lengthTextBox.TabIndex = 7;
             // 
             // label4
             // 
@@ -142,25 +144,45 @@
             this.label4.Text = "Notes";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBox4
+            // notesTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(140, 304);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(286, 164);
-            this.textBox4.TabIndex = 9;
+            this.notesTextBox.Location = new System.Drawing.Point(140, 304);
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(286, 164);
+            this.notesTextBox.TabIndex = 9;
+            // 
+            // prefixLabel
+            // 
+            this.prefixLabel.AutoSize = true;
+            this.prefixLabel.BackColor = System.Drawing.Color.PeachPuff;
+            this.prefixLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prefixLabel.Location = new System.Drawing.Point(285, 57);
+            this.prefixLabel.Name = "prefixLabel";
+            this.prefixLabel.Size = new System.Drawing.Size(45, 18);
+            this.prefixLabel.TabIndex = 11;
+            this.prefixLabel.Text = "Prefix";
+            // 
+            // prefixTextBox
+            // 
+            this.prefixTextBox.Location = new System.Drawing.Point(288, 78);
+            this.prefixTextBox.Name = "prefixTextBox";
+            this.prefixTextBox.Size = new System.Drawing.Size(135, 20);
+            this.prefixTextBox.TabIndex = 12;
             // 
             // CAPTURE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 537);
+            this.Controls.Add(this.prefixTextBox);
+            this.Controls.Add(this.prefixLabel);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.lengthTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.locationTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.timeTextBox);
             this.Controls.Add(this.cancelButton);
@@ -184,10 +206,12 @@
         private System.Windows.Forms.TextBox timeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox locationTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox lengthTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.Label prefixLabel;
+        private System.Windows.Forms.TextBox prefixTextBox;
     }
 }

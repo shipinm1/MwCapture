@@ -23,5 +23,8 @@
     <Setting Name="p3Location" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\gsp\Desktop</Value>
     </Setting>
+    <Setting Name="prefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">none</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
