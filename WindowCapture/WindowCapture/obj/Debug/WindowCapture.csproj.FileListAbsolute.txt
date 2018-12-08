@@ -33,3 +33,11 @@ C:\Users\yan\Documents\GitHub\MwCapture\WindowCapture\WindowCapture\obj\Debug\Wi
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.MWC.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.CAPTURE.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.SETTING.resources
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.dll
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Utilities.dll
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Types.dll
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.xml
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.dll.config
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Utilities.xml
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Types.xml
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CopyComplete

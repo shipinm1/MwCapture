@@ -10,14 +10,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Expression.Encoder;
+using Microsoft.Expression.Encoder.Devices;
+using Microsoft.Expression.Encoder.ScreenCapture;
+
+
 
 namespace WindowCapture
 {
     public partial class MWC : Form
     {
+        private DateTime startingTime;
+        private ScreenCaptureJob selfCapture;
         private string p1name, p2name, p3name;
         static Size e = Screen.PrimaryScreen.Bounds.Size;
         Bitmap temp = new Bitmap(e.Width, e.Height);
+
+
         public MWC()
         {
             InitializeComponent();
@@ -79,8 +88,10 @@ namespace WindowCapture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
-           
+            if (selfCapture != null && selfCapture.Status == RecordStatus.Running)
+            {
+                recordingTime.Text = (DateTime.Now - startingTime).ToString();
+            }
             //Get_source();
             Process proc1 = null;
             Process proc2 = null;
@@ -192,7 +203,7 @@ namespace WindowCapture
             p1Name.Text = Properties.Settings.Default["p1"].ToString();
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
-            
+            recordingTime.ReadOnly = true;
             //this.AutoSize = true;
             //this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
@@ -207,13 +218,15 @@ namespace WindowCapture
             p2name = p2Name.Text;
         }
 
+        private void p3Name_TextChanged(object sender, EventArgs e)
+        {
+            p3name = p3Name.Text;
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
-
-        
-
         //resize event
         private void MWC_ResizeEnd(object sender, EventArgs e)
         {
@@ -233,13 +246,39 @@ namespace WindowCapture
             p1Name.Location = new Point(p1Name.Location.X, pictureBox1.Size.Height + 26);
             p2Name.Location = new Point(p2Name.Location.X, pictureBox1.Size.Height + 26);
             p3Name.Location = new Point(p3Name.Location.X, pictureBox1.Size.Height + 26);
+
             
         }
 
-        private void p3Name_TextChanged(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
-            p3name = p3Name.Text;
+            StartRecording();
+            startingTime = DateTime.Now;
+
         }
+        void StartRecording()
+        {
+            selfCapture = new ScreenCaptureJob();
+            RECT selfRec;
+            GetWindowRect(this.Handle, out selfRec);
+            Debug.WriteLine(selfRec.Size);
+            selfCapture.CaptureRectangle = selfRec;
+            selfCapture.ShowFlashingBoundary = true;
+            selfCapture.CaptureMouseCursor = true;
+            selfCapture.ShowCountdown = true;
+            selfCapture.OutputPath = Properties.Settings.Default["pictureLocation"].ToString();
+            selfCapture.Start();
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            if (selfCapture.Status == RecordStatus.Running)
+                selfCapture.Stop();
+            else
+                MessageBox.Show("Recording not started.");
+        }
+
+        
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -247,6 +286,9 @@ namespace WindowCapture
             Properties.Settings.Default["p2"] = p2Name.Text;
             Properties.Settings.Default["p3"] = p3Name.Text;
             Properties.Settings.Default.Save();
+            if (selfCapture.Status == RecordStatus.Running)
+                selfCapture.Stop();
+            selfCapture.Dispose();
             
         }
     }

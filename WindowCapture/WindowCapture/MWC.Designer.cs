@@ -45,6 +45,9 @@
             this.p1Name = new System.Windows.Forms.TextBox();
             this.p3Name = new System.Windows.Forms.TextBox();
             this.p2Name = new System.Windows.Forms.TextBox();
+            this.startButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.recordingTime = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -219,11 +222,44 @@
             this.p2Name.TabIndex = 14;
             this.p2Name.TextChanged += new System.EventHandler(this.p2Name_TextChanged);
             // 
+            // startButton
+            // 
+            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Location = new System.Drawing.Point(121, 648);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(109, 56);
+            this.startButton.TabIndex = 15;
+            this.startButton.Text = "START Recording";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // stopButton
+            // 
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Location = new System.Drawing.Point(259, 648);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(109, 56);
+            this.stopButton.TabIndex = 16;
+            this.stopButton.Text = "STOP Recording";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // recordingTime
+            // 
+            this.recordingTime.BackColor = System.Drawing.Color.DarkGray;
+            this.recordingTime.Location = new System.Drawing.Point(374, 668);
+            this.recordingTime.Name = "recordingTime";
+            this.recordingTime.Size = new System.Drawing.Size(117, 20);
+            this.recordingTime.TabIndex = 17;
+            // 
             // MWC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.recordingTime);
+            this.Controls.Add(this.stopButton);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.p2Name);
             this.Controls.Add(this.p3Name);
             this.Controls.Add(this.p1Name);
@@ -267,6 +303,9 @@
         private System.Windows.Forms.TextBox p1Name;
         private System.Windows.Forms.TextBox p3Name;
         private System.Windows.Forms.TextBox p2Name;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.TextBox recordingTime;
     }
 }
 
