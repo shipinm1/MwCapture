@@ -225,7 +225,7 @@
             // startButton
             // 
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(121, 648);
+            this.startButton.Location = new System.Drawing.Point(121, 642);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(109, 56);
             this.startButton.TabIndex = 15;
@@ -236,7 +236,7 @@
             // stopButton
             // 
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stopButton.Location = new System.Drawing.Point(259, 648);
+            this.stopButton.Location = new System.Drawing.Point(259, 642);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(109, 56);
             this.stopButton.TabIndex = 16;
@@ -247,9 +247,10 @@
             // recordingTime
             // 
             this.recordingTime.BackColor = System.Drawing.Color.DarkGray;
-            this.recordingTime.Location = new System.Drawing.Point(374, 668);
+            this.recordingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordingTime.Location = new System.Drawing.Point(374, 642);
             this.recordingTime.Name = "recordingTime";
-            this.recordingTime.Size = new System.Drawing.Size(117, 20);
+            this.recordingTime.Size = new System.Drawing.Size(117, 26);
             this.recordingTime.TabIndex = 17;
             // 
             // MWC

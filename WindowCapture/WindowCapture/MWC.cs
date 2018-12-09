@@ -246,8 +246,11 @@ namespace WindowCapture
             p1Name.Location = new Point(p1Name.Location.X, pictureBox1.Size.Height + 26);
             p2Name.Location = new Point(p2Name.Location.X, pictureBox1.Size.Height + 26);
             p3Name.Location = new Point(p3Name.Location.X, pictureBox1.Size.Height + 26);
+            startButton.Location = new Point(startButton.Location.X, pictureBox1.Size.Height + 66);
+            stopButton.Location = new Point(stopButton.Location.X, pictureBox1.Size.Height + 66);
+            recordingTime.Location = new Point(recordingTime.Location.X, pictureBox1.Size.Height + 66);
 
-            
+
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -261,7 +264,13 @@ namespace WindowCapture
             selfCapture = new ScreenCaptureJob();
             RECT selfRec;
             GetWindowRect(this.Handle, out selfRec);
-            Debug.WriteLine(selfRec.Size);
+            if (selfRec.Size.Width % 4 != 0 && selfRec.Size.Height % 4 != 0)
+            {
+                selfRec.Width = selfRec.Size.Width - selfRec.Size.Width % 4;
+                selfRec.Height = selfRec.Size.Height - selfRec.Size.Height % 4;
+            }
+            Debug.WriteLine(selfRec.Size.Width % 4);
+            Debug.WriteLine(selfRec.Size.Height % 4);
             selfCapture.CaptureRectangle = selfRec;
             selfCapture.ShowFlashingBoundary = true;
             selfCapture.CaptureMouseCursor = true;

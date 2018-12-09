@@ -9,7 +9,6 @@ C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\o
 C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\obj\Debug\WindowCapture.exe
 C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb
 C:\Users\yan\Documents\Visual Studio 2017\Projects\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Form2.resources
-C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Properties.Resources.resources
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.GenerateResource.cache
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CoreCompileInputs.cache
