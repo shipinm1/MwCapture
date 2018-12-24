@@ -56,14 +56,14 @@ namespace WindowCapture
                 x.Save(location + @"\" + prefixTextBox.Text + "-" + sTime + ".jpg", encoder, encParams); //image name should be changed to unique image ID
                 x.Dispose();
                 savePic.Image.Dispose();
-                MessageBox.Show("Image Saved");
+                //MessageBox.Show("Image Saved");
                 using (StreamWriter sw = File.CreateText(location + @"\" + prefixTextBox.Text + "-" + sTime + ".txt"))
                 {
                     sw.WriteLine("Time: " + timeTextBox.Text);
                     sw.WriteLine("Location: " + locationTextBox.Text);
                     sw.WriteLine("Length: " + lengthTextBox.Text);
                     sw.WriteLine("Notes: " + notesTextBox.Text);
-                    MessageBox.Show("file stored at: " + location);
+                    //MessageBox.Show("file stored at: " + location);
                 }
                 Properties.Settings.Default["prefix"] = prefixTextBox.Text;
                 Properties.Settings.Default.Save();
@@ -71,7 +71,7 @@ namespace WindowCapture
             }
             else
             {
-                MessageBox.Show("Invalid File Location\n\nPicture Saving Failed");
+                //MessageBox.Show("Invalid File Location\n\nPicture Saving Failed");
                 this.Close();
             }
         }
