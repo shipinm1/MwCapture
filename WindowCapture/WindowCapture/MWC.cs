@@ -20,7 +20,7 @@ namespace WindowCapture
 {
     public partial class MWC : Form
     {
-        private DateTime startingTime;
+        private DateTime startingTime, sTime;
         private ScreenCaptureJob selfCapture;
         private string p1name, p2name, p3name;
         static Size e = Screen.PrimaryScreen.Bounds.Size;
@@ -30,7 +30,6 @@ namespace WindowCapture
         public MWC()
         {
             InitializeComponent();
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             
         }
 
@@ -85,14 +84,14 @@ namespace WindowCapture
             //Debug.WriteLine(img.Size);
             //return img;
         }
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (selfCapture != null && selfCapture.Status == RecordStatus.Running)
             {
-                recordingTime.Text = (DateTime.Now - startingTime).ToString();
+                recordingTime.Text = (DateTime.Now - startingTime).ToString("c");
             }
-            //Get_source();
+            
             Process proc1 = null;
             Process proc2 = null;
             Process proc3 = null;
@@ -152,7 +151,7 @@ namespace WindowCapture
                 MessageBox.Show("Process 2 not found or empty");
             if (p3name == "")
                 MessageBox.Show("Process 3 not found or empty");
-            string sTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
+            sTime = DateTime.Now;
             //Debug.WriteLine(sTime);
             //Debug.WriteLine("c:\\Users\\gsp\\Desktop\\test_" + DateTime.Now + ".jpg");
         }
