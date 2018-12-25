@@ -234,7 +234,7 @@ namespace WindowCapture
             double formWidth = this.Size.Width;
             double ratio = 1.875;
             double secondaryRatio = 2.8;
-            if (this.Size.Height != 1080 && this.Size.Width != 1920)
+            if (this.Size.Height < 1060 && this.Size.Width < 1900)
             {
                 pictureBox1.Size = new Size((int)(formWidth / ratio), (int)(formHeight / ratio));
                 pictureBox2.Size = new Size((int)(formWidth / secondaryRatio), (int)(formHeight / secondaryRatio));
@@ -266,20 +266,33 @@ namespace WindowCapture
         {
             selfCapture = new ScreenCaptureJob();
             RECT selfRec;
-            GetWindowRect(this.Handle, out selfRec);
-            if (selfRec.Size.Width % 4 != 0 && selfRec.Size.Height % 4 != 0)
+            int recordingType = Convert.ToInt32(Properties.Settings.Default["recordingType"]);
+
+            if (recordingType == 0)
             {
-                selfRec.Width = selfRec.Size.Width - selfRec.Size.Width % 4;
-                selfRec.Height = selfRec.Size.Height - selfRec.Size.Height % 4;
+                GetWindowRect(this.Handle, out selfRec);
+                if (selfRec.Size.Width % 4 != 0 && selfRec.Size.Height % 4 != 0)
+                {
+                    selfRec.Width = selfRec.Size.Width - selfRec.Size.Width % 4;
+                    selfRec.Height = selfRec.Size.Height - selfRec.Size.Height % 4;
+                }
             }
-            Debug.WriteLine(selfRec.Size.Width % 4);
-            Debug.WriteLine(selfRec.Size.Height % 4);
+
+            else
+            {
+                Size rectArea = SystemInformation.WorkingArea.Size;
+                selfRec = new RECT(0, 0, rectArea.Width - (rectArea.Width % 4), rectArea.Height - (rectArea.Height % 4));
+            }
+            
+            //Debug.WriteLine(selfRec.Size.Width % 4);
+            //Debug.WriteLine(selfRec.Size.Height % 4);
             selfCapture.CaptureRectangle = selfRec;
             selfCapture.ShowFlashingBoundary = true;
             selfCapture.CaptureMouseCursor = true;
             selfCapture.ShowCountdown = true;
             selfCapture.OutputPath = Properties.Settings.Default["pictureLocation"].ToString();
             selfCapture.Start();
+            
         }
 
         private void stopButton_Click(object sender, EventArgs e)

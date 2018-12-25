@@ -108,7 +108,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(1149, 24);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(754, 454);
+            this.pictureBox2.Size = new System.Drawing.Size(732, 458);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
@@ -135,7 +135,7 @@
             this.pictureBox3.Location = new System.Drawing.Point(1149, 482);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(754, 454);
+            this.pictureBox3.Size = new System.Drawing.Size(732, 458);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
@@ -257,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1884, 1021);
             this.Controls.Add(this.recordingTime);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);

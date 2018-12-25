@@ -118,5 +118,17 @@ namespace WindowCapture.Properties {
                 this["prefix"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string recordingType {
+            get {
+                return ((string)(this["recordingType"]));
+            }
+            set {
+                this["recordingType"] = value;
+            }
+        }
     }
 }
