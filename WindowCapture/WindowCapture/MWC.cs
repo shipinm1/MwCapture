@@ -249,6 +249,7 @@ namespace WindowCapture
                 startButton.Location = new Point(startButton.Location.X, pictureBox1.Size.Height + 66);
                 stopButton.Location = new Point(stopButton.Location.X, pictureBox1.Size.Height + 66);
                 recordingTime.Location = new Point(recordingTime.Location.X, pictureBox1.Size.Height + 66);
+                directionButton.Location = new Point(pictureBox3.Location.X - 300, this.Size.Height - 300);
 
             }
 
@@ -261,6 +262,20 @@ namespace WindowCapture
             startingTime = DateTime.Now;
 
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            Point position = new Point(this.Location.X + directionButton.Location.X + 225, this.Location.Y + directionButton.Location.Y + 225);
+            radialMenu1.ShowPopup(new Point(this.Width/2 , Convert.ToInt32(this.Height/1.29)));
+            
+            radialMenu1.MenuRadius = 150;
+            radialMenu1.CollapseOnOuterMouseClick = false;
+            radialMenu1.CloseOnOuterMouseClick = false;
+            radialMenu1.BackColor = Color.PaleTurquoise;
+            radialMenu1.BorderColor = Color.LightSkyBlue;
+            radialMenu1.ButtonBorderColor = Color.LightCyan;
+        }
+
         void StartRecording()
         {
             selfCapture = new ScreenCaptureJob();

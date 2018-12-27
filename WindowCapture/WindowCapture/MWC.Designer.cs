@@ -48,9 +48,30 @@
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.recordingTime = new System.Windows.Forms.TextBox();
+            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem2 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem3 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem4 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem5 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem6 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem7 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem8 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem9 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem10 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem11 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem12 = new DevExpress.XtraBars.BarCheckItem();
+            this.directionButton = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -253,11 +274,173 @@
             this.recordingTime.Size = new System.Drawing.Size(117, 26);
             this.recordingTime.TabIndex = 17;
             // 
+            // radialMenu1
+            // 
+            this.radialMenu1.ArcHoveredThickness = 10;
+            this.radialMenu1.ArcSelectedThickness = 10;
+            this.radialMenu1.CloseOnOuterMouseClick = false;
+            this.radialMenu1.CollapseOnOuterMouseClick = false;
+            this.radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem4),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem6),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem7),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem8),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem9),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem10),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem11),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem12)});
+            this.radialMenu1.Manager = this.barManager1;
+            this.radialMenu1.Name = "radialMenu1";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barCheckItem1,
+            this.barCheckItem2,
+            this.barCheckItem3,
+            this.barCheckItem4,
+            this.barCheckItem5,
+            this.barCheckItem6,
+            this.barCheckItem7,
+            this.barCheckItem8,
+            this.barCheckItem9,
+            this.barCheckItem10,
+            this.barCheckItem11,
+            this.barCheckItem12});
+            this.barManager1.MaxItemId = 12;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1884, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1021);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1884, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1021);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1884, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1021);
+            // 
+            // barCheckItem1
+            // 
+            this.barCheckItem1.Caption = "1";
+            this.barCheckItem1.Id = 0;
+            this.barCheckItem1.Name = "barCheckItem1";
+            // 
+            // barCheckItem2
+            // 
+            this.barCheckItem2.Caption = "2";
+            this.barCheckItem2.Id = 1;
+            this.barCheckItem2.Name = "barCheckItem2";
+            // 
+            // barCheckItem3
+            // 
+            this.barCheckItem3.Caption = "3";
+            this.barCheckItem3.Id = 2;
+            this.barCheckItem3.Name = "barCheckItem3";
+            // 
+            // barCheckItem4
+            // 
+            this.barCheckItem4.Caption = "4";
+            this.barCheckItem4.Id = 3;
+            this.barCheckItem4.Name = "barCheckItem4";
+            // 
+            // barCheckItem5
+            // 
+            this.barCheckItem5.Caption = "5";
+            this.barCheckItem5.Id = 4;
+            this.barCheckItem5.Name = "barCheckItem5";
+            // 
+            // barCheckItem6
+            // 
+            this.barCheckItem6.Caption = "6";
+            this.barCheckItem6.Id = 5;
+            this.barCheckItem6.Name = "barCheckItem6";
+            // 
+            // barCheckItem7
+            // 
+            this.barCheckItem7.Caption = "7";
+            this.barCheckItem7.Id = 6;
+            this.barCheckItem7.Name = "barCheckItem7";
+            // 
+            // barCheckItem8
+            // 
+            this.barCheckItem8.Caption = "8";
+            this.barCheckItem8.Id = 7;
+            this.barCheckItem8.Name = "barCheckItem8";
+            // 
+            // barCheckItem9
+            // 
+            this.barCheckItem9.Caption = "9";
+            this.barCheckItem9.Id = 8;
+            this.barCheckItem9.Name = "barCheckItem9";
+            // 
+            // barCheckItem10
+            // 
+            this.barCheckItem10.Caption = "10";
+            this.barCheckItem10.Id = 9;
+            this.barCheckItem10.Name = "barCheckItem10";
+            // 
+            // barCheckItem11
+            // 
+            this.barCheckItem11.Caption = "11";
+            this.barCheckItem11.Id = 10;
+            this.barCheckItem11.Name = "barCheckItem11";
+            // 
+            // barCheckItem12
+            // 
+            this.barCheckItem12.Caption = "12";
+            this.barCheckItem12.Id = 11;
+            this.barCheckItem12.Name = "barCheckItem12";
+            // 
+            // directionButton
+            // 
+            this.directionButton.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.directionButton.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.directionButton.Appearance.Options.UseFont = true;
+            this.directionButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.directionButton.Location = new System.Drawing.Point(849, 760);
+            this.directionButton.Name = "directionButton";
+            this.directionButton.Size = new System.Drawing.Size(70, 53);
+            this.directionButton.TabIndex = 22;
+            this.directionButton.Text = "Direction \r\nIndicator";
+            this.directionButton.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // MWC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 1021);
+            this.Controls.Add(this.directionButton);
             this.Controls.Add(this.recordingTime);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
@@ -275,6 +458,10 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MWC";
             this.Text = "MWC";
@@ -283,6 +470,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,6 +496,25 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.TextBox recordingTime;
+        private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem1;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem2;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem3;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem4;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem5;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem6;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem7;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem8;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem9;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem10;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem11;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem12;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.SimpleButton directionButton;
     }
 }
 
