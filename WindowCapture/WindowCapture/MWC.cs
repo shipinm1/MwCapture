@@ -51,6 +51,8 @@ namespace WindowCapture
         [DllImport("user32")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool ShowWindow(IntPtr hWnd, int flags);
+        [DllImport("user32.dll", EntryPoint = "GetDesktopWindow")]
+        private static extern IntPtr GetDesktopWindow();
 
         // [DllImport("user32.dll")]
         //public static extern IntPtr CreateRectRgn(int x, int y, int z, int c);
@@ -72,6 +74,17 @@ namespace WindowCapture
             
             return bmp;
             
+        }
+
+        public static Bitmap CaptureDesktop()
+        {
+            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format24bppRgb);
+            Graphics gfxBmp = Graphics.FromImage(bmp);
+            gfxBmp.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+            
+            gfxBmp.Dispose();
+
+            return bmp;
         }
 
 
@@ -176,11 +189,10 @@ namespace WindowCapture
         private Bitmap cropImage(Bitmap img)
         {
             Rectangle cropArea = new Rectangle();
-            cropArea.Width = this.Width - 126;
-            cropArea.Height = this.Height - 41;
-            cropArea.X = 125;
-            cropArea.Y = 40;
-            Debug.WriteLine(this.Size);
+            cropArea.X = this.Location.X + 116;
+            cropArea.Y = this.Location.Y + 20;
+            cropArea.Width = this.Width - 116;
+            cropArea.Height = this.Height - 20;
             Bitmap b = new Bitmap(img);
             return b.Clone(cropArea, b.PixelFormat);
         }
@@ -189,9 +201,10 @@ namespace WindowCapture
         {
             //indicator_mover(capture);
             CAPTURE f2 = new CAPTURE();
-            Bitmap save = CaptureApplication(this.Handle);
-            
+            //Bitmap save = CaptureApplication(this.Handle);
+            Bitmap save = CaptureDesktop();
             f2.SetPic(cropImage(save));
+            //f2.SetPic(cropImage(save));
             f2.Show();
         }
 
@@ -219,7 +232,7 @@ namespace WindowCapture
             }
             else
                 this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.WindowsDefaultBounds;
             p1Name.Text = Properties.Settings.Default["p1"].ToString();
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
@@ -310,7 +323,7 @@ namespace WindowCapture
             if (recordingType == 0)
             {
                 GetWindowRect(this.Handle, out selfRec);
-                if (selfRec.Size.Width % 4 != 0 && selfRec.Size.Height % 4 != 0)
+                if (selfRec.Size.Width % 4 != 0 || selfRec.Size.Height % 4 != 0)
                 {
                     selfRec.Width = selfRec.Size.Width - selfRec.Size.Width % 4;
                     selfRec.Height = selfRec.Size.Height - selfRec.Size.Height % 4;

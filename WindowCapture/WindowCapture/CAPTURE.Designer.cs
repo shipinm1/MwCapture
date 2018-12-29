@@ -50,7 +50,7 @@
             this.savePic.Margin = new System.Windows.Forms.Padding(2);
             this.savePic.Name = "savePic";
             this.savePic.Size = new System.Drawing.Size(530, 469);
-            this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.savePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.savePic.TabIndex = 0;
             this.savePic.TabStop = false;
             // 

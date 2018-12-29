@@ -84,3 +84,4 @@ C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\es\DevExpre
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\ja\DevExpress.Pdf.v18.2.Core.resources.dll
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\ru\DevExpress.Pdf.v18.2.Core.resources.dll
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.exe.licenses
+C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
