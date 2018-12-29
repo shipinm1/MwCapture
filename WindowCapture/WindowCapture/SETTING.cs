@@ -81,16 +81,6 @@ namespace WindowCapture
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         
 
         private void p3Location_TextChanged(object sender, EventArgs e)
@@ -116,18 +106,21 @@ namespace WindowCapture
             Properties.Settings.Default["p2Location"] = p2Location.Text;
             Properties.Settings.Default["p3Location"] = p3Location.Text;
             Properties.Settings.Default["recordingType"] = comboBox1.SelectedIndex.ToString();
+            Properties.Settings.Default["formBorderStyle"] = borderStyleComboBox.SelectedIndex.ToString();
             Properties.Settings.Default.Save();
             this.Close();
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            this.StartPosition = FormStartPosition.CenterParent;
             //Properties.Settings.Default["pictureLocation"] = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             saveLocation.Text = Properties.Settings.Default["pictureLocation"].ToString();
             p1Location.Text = Properties.Settings.Default["p1Location"].ToString();
             p2Location.Text = Properties.Settings.Default["p2Location"].ToString();
             p3Location.Text = Properties.Settings.Default["p3Location"].ToString();
             comboBox1.SelectedIndex = Convert.ToInt32(Properties.Settings.Default["recordingType"]);
+            borderStyleComboBox.SelectedIndex = Convert.ToInt32(Properties.Settings.Default["formBorderStyle"]);
             
         }
 

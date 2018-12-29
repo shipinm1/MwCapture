@@ -40,7 +40,6 @@ C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCaptu
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CopyComplete
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.exe
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb
-C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\DevExpress.Data.v18.2.dll
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\DevExpress.Utils.v18.2.dll
 C:\Users\gsp\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\DevExpress.XtraBars.v18.2.dll

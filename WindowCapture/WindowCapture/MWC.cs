@@ -30,7 +30,10 @@ namespace WindowCapture
         public MWC()
         {
             InitializeComponent();
-            
+            buttonIndicator.Visible = false;
+            startButtonBackground.Visible = false;
+            DoubleBuffered = true;
+
         }
 
         //private void StartProcess_Click(object sender, EventArgs e)
@@ -142,8 +145,16 @@ namespace WindowCapture
          
         }
 
+        void indicator_mover(Button button)
+        {
+            buttonIndicator.Visible = true;
+            buttonIndicator.Height = button.Height;
+            buttonIndicator.Top = button.Top;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            indicator_mover(button1);
             timer1.Enabled = true;
             if (p1name == "")
                 MessageBox.Show("Process 1 not found or empty");
@@ -158,6 +169,7 @@ namespace WindowCapture
 
         private void button2_Click(object sender, EventArgs e)
         {
+            indicator_mover(button2);
             timer1.Enabled = false;
         }
 
@@ -175,6 +187,7 @@ namespace WindowCapture
 
         private void capture_Click(object sender, EventArgs e)
         {
+            //indicator_mover(capture);
             CAPTURE f2 = new CAPTURE();
             Bitmap save = CaptureApplication(this.Handle);
             
@@ -193,12 +206,20 @@ namespace WindowCapture
 
         private void setting_Click(object sender, EventArgs e)
         {
+            //indicator_mover(setting);
             SETTING f3 = new SETTING();
             f3.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(Properties.Settings.Default["formBorderStyle"]) == 0)
+            {
+                this.FormBorderStyle = FormBorderStyle.None;
+            }
+            else
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.StartPosition = FormStartPosition.CenterScreen;
             p1Name.Text = Properties.Settings.Default["p1"].ToString();
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
@@ -249,7 +270,7 @@ namespace WindowCapture
                 startButton.Location = new Point(startButton.Location.X, pictureBox1.Size.Height + 66);
                 stopButton.Location = new Point(stopButton.Location.X, pictureBox1.Size.Height + 66);
                 recordingTime.Location = new Point(recordingTime.Location.X, pictureBox1.Size.Height + 66);
-                directionButton.Location = new Point(pictureBox3.Location.X - 300, this.Size.Height - 300);
+                directionButton.Location = new Point(pictureBox3.Location.X - 250, this.Size.Height - 300);
 
             }
 
@@ -258,6 +279,7 @@ namespace WindowCapture
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            startButtonBackground.Visible = true;
             StartRecording();
             startingTime = DateTime.Now;
 
@@ -265,15 +287,18 @@ namespace WindowCapture
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Point position = new Point(this.Location.X + directionButton.Location.X + 225, this.Location.Y + directionButton.Location.Y + 225);
-            radialMenu1.ShowPopup(new Point(this.Width/2 , Convert.ToInt32(this.Height/1.29)));
-            
+            //Point from screen
+            Point position = this.directionButton.PointToScreen(Point.Empty);
+            //radialMenu1.ShowPopup(new Point(this.Width/2 , Convert.ToInt32(this.Height/1.29)));
+            radialMenu1.ShowPopup(position);
             radialMenu1.MenuRadius = 150;
             radialMenu1.CollapseOnOuterMouseClick = false;
             radialMenu1.CloseOnOuterMouseClick = false;
             radialMenu1.BackColor = Color.PaleTurquoise;
             radialMenu1.BorderColor = Color.LightSkyBlue;
             radialMenu1.ButtonBorderColor = Color.LightCyan;
+            radialMenu1.MenuColor = Color.Tomato;
+            radialMenu1.InnerRadius = 70;
         }
 
         void StartRecording()
@@ -303,7 +328,7 @@ namespace WindowCapture
             selfCapture.CaptureRectangle = selfRec;
             selfCapture.ShowFlashingBoundary = true;
             selfCapture.CaptureMouseCursor = true;
-            selfCapture.ShowCountdown = true;
+            //selfCapture.ShowCountdown = true;
             selfCapture.OutputPath = Properties.Settings.Default["pictureLocation"].ToString();
             selfCapture.Start();
             
@@ -311,6 +336,7 @@ namespace WindowCapture
 
         private void stopButton_Click(object sender, EventArgs e)
         {
+            startButtonBackground.Visible = false;
             if (selfCapture != null)
             {
                 if (selfCapture.Status == RecordStatus.Running)

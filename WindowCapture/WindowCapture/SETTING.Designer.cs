@@ -46,6 +46,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.borderStyleComboBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -89,7 +92,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.cancelButton.Location = new System.Drawing.Point(331, 317);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -130,7 +133,6 @@
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Program 3:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -151,7 +153,6 @@
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Program 1:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // chooseButtonP3
             // 
@@ -223,11 +224,45 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Recording Style:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(22, 162);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Border Style:";
+            // 
+            // borderStyleComboBox
+            // 
+            this.borderStyleComboBox.FormattingEnabled = true;
+            this.borderStyleComboBox.Items.AddRange(new object[] {
+            "Borderless",
+            "Sizeable"});
+            this.borderStyleComboBox.Location = new System.Drawing.Point(117, 159);
+            this.borderStyleComboBox.Name = "borderStyleComboBox";
+            this.borderStyleComboBox.Size = new System.Drawing.Size(121, 21);
+            this.borderStyleComboBox.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label9.Location = new System.Drawing.Point(241, 162);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "(Restart required)";
+            // 
             // SETTING
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(529, 388);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.borderStyleComboBox);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -246,6 +281,7 @@
             this.Controls.Add(this.saveLocation);
             this.Controls.Add(this.chooseButtonPicture);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SETTING";
             this.Text = "Setting";
@@ -275,5 +311,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox borderStyleComboBox;
+        private System.Windows.Forms.Label label9;
     }
 }

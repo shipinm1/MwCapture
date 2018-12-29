@@ -25,6 +25,7 @@ namespace WindowCapture
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            this.StartPosition = FormStartPosition.CenterParent;
             timeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss");
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;

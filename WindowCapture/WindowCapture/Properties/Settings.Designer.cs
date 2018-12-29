@@ -130,5 +130,17 @@ namespace WindowCapture.Properties {
                 this["recordingType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string formBorderStyle {
+            get {
+                return ((string)(this["formBorderStyle"]));
+            }
+            set {
+                this["formBorderStyle"] = value;
+            }
+        }
     }
 }

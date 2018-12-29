@@ -49,11 +49,6 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.recordingTime = new System.Windows.Forms.TextBox();
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem2 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem3 = new DevExpress.XtraBars.BarCheckItem();
@@ -66,7 +61,15 @@
             this.barCheckItem10 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem11 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem12 = new DevExpress.XtraBars.BarCheckItem();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.directionButton = new DevExpress.XtraEditors.SimpleButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonIndicator = new System.Windows.Forms.Panel();
+            this.startButtonBackground = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -80,6 +83,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(121, 24);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(1024, 576);
@@ -93,11 +97,14 @@
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button1.Location = new System.Drawing.Point(9, 24);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 62);
+            this.button1.Size = new System.Drawing.Size(96, 62);
             this.button1.TabIndex = 2;
             this.button1.Text = "LOAD";
             this.button1.UseVisualStyleBackColor = true;
@@ -106,11 +113,14 @@
             // button2
             // 
             this.button2.AutoSize = true;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button2.Location = new System.Drawing.Point(9, 90);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 62);
+            this.button2.Size = new System.Drawing.Size(96, 62);
             this.button2.TabIndex = 3;
             this.button2.Text = "PAUSE";
             this.button2.UseVisualStyleBackColor = true;
@@ -118,6 +128,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox2
@@ -126,6 +137,7 @@
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(1149, 24);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
@@ -137,11 +149,14 @@
             // capture
             // 
             this.capture.AutoSize = true;
-            this.capture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capture.FlatAppearance.BorderSize = 0;
+            this.capture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.capture.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.capture.Location = new System.Drawing.Point(9, 156);
             this.capture.Margin = new System.Windows.Forms.Padding(2);
             this.capture.Name = "capture";
-            this.capture.Size = new System.Drawing.Size(106, 62);
+            this.capture.Size = new System.Drawing.Size(96, 62);
             this.capture.TabIndex = 5;
             this.capture.Text = "CAPTURE";
             this.capture.UseVisualStyleBackColor = true;
@@ -153,6 +168,7 @@
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(1149, 482);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
@@ -164,10 +180,13 @@
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.Red;
+            this.exitButton.FlatAppearance.BorderSize = 0;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.exitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.exitButton.Location = new System.Drawing.Point(9, 360);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(106, 62);
+            this.exitButton.Size = new System.Drawing.Size(96, 62);
             this.exitButton.TabIndex = 7;
             this.exitButton.Text = "EXIT";
             this.exitButton.UseVisualStyleBackColor = false;
@@ -176,11 +195,14 @@
             // setting
             // 
             this.setting.AutoSize = true;
-            this.setting.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setting.FlatAppearance.BorderSize = 0;
+            this.setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setting.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.setting.Location = new System.Drawing.Point(9, 222);
             this.setting.Margin = new System.Windows.Forms.Padding(2);
             this.setting.Name = "setting";
-            this.setting.Size = new System.Drawing.Size(106, 62);
+            this.setting.Size = new System.Drawing.Size(96, 62);
             this.setting.TabIndex = 8;
             this.setting.Text = "SETTING";
             this.setting.UseVisualStyleBackColor = true;
@@ -245,6 +267,7 @@
             // 
             // startButton
             // 
+            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.Location = new System.Drawing.Point(121, 642);
             this.startButton.Name = "startButton";
@@ -256,6 +279,7 @@
             // 
             // stopButton
             // 
+            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.Location = new System.Drawing.Point(259, 642);
             this.stopButton.Name = "stopButton";
@@ -276,10 +300,11 @@
             // 
             // radialMenu1
             // 
-            this.radialMenu1.ArcHoveredThickness = 10;
-            this.radialMenu1.ArcSelectedThickness = 10;
+            this.radialMenu1.ArcHoveredThickness = 50;
+            this.radialMenu1.ArcSelectedThickness = 50;
             this.radialMenu1.CloseOnOuterMouseClick = false;
             this.radialMenu1.CollapseOnOuterMouseClick = false;
+            this.radialMenu1.InnerRadius = 90;
             this.radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem2),
@@ -295,60 +320,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barCheckItem12)});
             this.radialMenu1.Manager = this.barManager1;
             this.radialMenu1.Name = "radialMenu1";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barCheckItem1,
-            this.barCheckItem2,
-            this.barCheckItem3,
-            this.barCheckItem4,
-            this.barCheckItem5,
-            this.barCheckItem6,
-            this.barCheckItem7,
-            this.barCheckItem8,
-            this.barCheckItem9,
-            this.barCheckItem10,
-            this.barCheckItem11,
-            this.barCheckItem12});
-            this.barManager1.MaxItemId = 12;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1884, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1021);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1884, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1021);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1884, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1021);
+            this.radialMenu1.SubMenuHoverColor = System.Drawing.Color.Tomato;
             // 
             // barCheckItem1
             // 
@@ -422,24 +394,105 @@
             this.barCheckItem12.Id = 11;
             this.barCheckItem12.Name = "barCheckItem12";
             // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barCheckItem1,
+            this.barCheckItem2,
+            this.barCheckItem3,
+            this.barCheckItem4,
+            this.barCheckItem5,
+            this.barCheckItem6,
+            this.barCheckItem7,
+            this.barCheckItem8,
+            this.barCheckItem9,
+            this.barCheckItem10,
+            this.barCheckItem11,
+            this.barCheckItem12});
+            this.barManager1.MaxItemId = 12;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1884, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1021);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1884, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1021);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1884, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1021);
+            // 
             // directionButton
             // 
             this.directionButton.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.directionButton.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
             this.directionButton.Appearance.Options.UseFont = true;
             this.directionButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.directionButton.Location = new System.Drawing.Point(849, 760);
+            this.directionButton.Location = new System.Drawing.Point(899, 761);
             this.directionButton.Name = "directionButton";
             this.directionButton.Size = new System.Drawing.Size(70, 53);
             this.directionButton.TabIndex = 22;
             this.directionButton.Text = "Direction \r\nIndicator";
             this.directionButton.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(105, 1021);
+            this.panel1.TabIndex = 27;
+            // 
+            // buttonIndicator
+            // 
+            this.buttonIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.buttonIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.buttonIndicator.Location = new System.Drawing.Point(106, 24);
+            this.buttonIndicator.Name = "buttonIndicator";
+            this.buttonIndicator.Size = new System.Drawing.Size(10, 62);
+            this.buttonIndicator.TabIndex = 28;
+            // 
+            // startButtonBackground
+            // 
+            this.startButtonBackground.BackColor = System.Drawing.Color.Red;
+            this.startButtonBackground.Location = new System.Drawing.Point(116, 638);
+            this.startButtonBackground.Name = "startButtonBackground";
+            this.startButtonBackground.Size = new System.Drawing.Size(119, 63);
+            this.startButtonBackground.TabIndex = 29;
+            // 
             // MWC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1884, 1021);
+            this.Controls.Add(this.buttonIndicator);
             this.Controls.Add(this.directionButton);
             this.Controls.Add(this.recordingTime);
             this.Controls.Add(this.stopButton);
@@ -458,10 +511,14 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.startButtonBackground);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MWC";
             this.Text = "MWC";
@@ -515,6 +572,9 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.SimpleButton directionButton;
+        private System.Windows.Forms.Panel buttonIndicator;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel startButtonBackground;
     }
 }
 
