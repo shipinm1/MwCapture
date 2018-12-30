@@ -232,7 +232,7 @@ namespace WindowCapture
             }
             else
                 this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.StartPosition = FormStartPosition.WindowsDefaultBounds;
+            this.Location = new Point(5,5);
             p1Name.Text = Properties.Settings.Default["p1"].ToString();
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
