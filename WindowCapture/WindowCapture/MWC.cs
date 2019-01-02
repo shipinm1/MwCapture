@@ -114,19 +114,22 @@ namespace WindowCapture
             if (p1name + p2name + p3name != "")
             {
                 //MessageBox.Show(p1name + p2name + p3name);
+                
                 if (p1name != "" && Process.GetProcessesByName(p1name).Length > 0)
                 {
+                    
                     proc1 = Process.GetProcessesByName(p1name)[0];
                     if (IsIconic(proc1.MainWindowHandle))
                     {
                         ShowWindow(proc1.MainWindowHandle, 9);
                     }
                     pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
-                   
+                    
                 }
 
                 if (p2name != "" && Process.GetProcessesByName(p2name).Length > 0)
                 {
+                    
                     proc2 = Process.GetProcessesByName(p2name)[0];
                     if (IsIconic(proc2.MainWindowHandle))
                     {
@@ -134,10 +137,12 @@ namespace WindowCapture
                     }
                     pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);
                     
+
                 }
 
                 if (p3name != "" && Process.GetProcessesByName(p3name).Length > 0)
                 {
+                    
                     proc3 = Process.GetProcessesByName(p3name)[0];
                     if (IsIconic(proc3.MainWindowHandle))
                     {
@@ -145,6 +150,7 @@ namespace WindowCapture
                     }
                     pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
                     
+
                 }
                 
             }
@@ -283,7 +289,7 @@ namespace WindowCapture
                 startButton.Location = new Point(startButton.Location.X, pictureBox1.Size.Height + 66);
                 stopButton.Location = new Point(stopButton.Location.X, pictureBox1.Size.Height + 66);
                 recordingTime.Location = new Point(recordingTime.Location.X, pictureBox1.Size.Height + 66);
-                directionButton.Location = new Point(pictureBox3.Location.X - 250, this.Size.Height - 300);
+                directionButton.Location = new Point(pictureBox3.Location.X - 250, this.Size.Height - 150);
 
             }
 
@@ -304,7 +310,7 @@ namespace WindowCapture
             Point position = this.directionButton.PointToScreen(Point.Empty);
             //radialMenu1.ShowPopup(new Point(this.Width/2 , Convert.ToInt32(this.Height/1.29)));
             radialMenu1.ShowPopup(position);
-            radialMenu1.MenuRadius = 150;
+            radialMenu1.MenuRadius = 100;
             radialMenu1.CollapseOnOuterMouseClick = false;
             radialMenu1.CloseOnOuterMouseClick = false;
             radialMenu1.BackColor = Color.PaleTurquoise;
