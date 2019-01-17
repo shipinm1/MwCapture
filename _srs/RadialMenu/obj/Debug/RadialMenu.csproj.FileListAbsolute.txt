@@ -1,0 +1,17 @@
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\bin\Debug\RadialMenu.dll
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\bin\Debug\RadialMenu.pdb
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\Themes\Generic.baml
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu_MarkupCompile.cache
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu_MarkupCompile.lref
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\Themes\PieShape.baml
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\Themes\RadialMenuCentralItem.baml
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\Themes\RadialMenuItem.baml
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\Themes\RadialMenu.baml
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.g.resources
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.Properties.Resources.resources
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.csproj.GenerateResource.cache
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.csproj.CoreCompileInputs.cache
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.dll
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.pdb
+C:\Users\kykel\Desktop\RadialMenu-master\RadialMenu\obj\Debug\RadialMenu.csprojAssemblyReference.cache

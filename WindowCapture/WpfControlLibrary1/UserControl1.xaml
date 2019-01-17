@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="WpfControlLibrary1.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:RadialMenu="clr-namespace:RadialMenu.Controls;assembly=RadialMenu"
+             xmlns:local="clr-namespace:WpfControlLibrary1"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+
+            <!--<RadialMenu:RadialMenu IsOpen="{Binding IsOpen}">-->
+            <RadialMenu:RadialMenu IsOpen="True" HalfShiftedItems="True">
+                <!-- CentralMenuItem -->
+
+                <RadialMenu:RadialMenu.CentralItem>
+                    <RadialMenu:RadialMenuCentralItem Command="{Binding CloseRadialMenuCommand}">
+                        <TextBlock>CLEAR</TextBlock>
+                    </RadialMenu:RadialMenuCentralItem>
+                </RadialMenu:RadialMenu.CentralItem>
+
+                <!-- MenuItems Around -->
+
+                <RadialMenu:RadialMenuItem Command="{Binding NewFileCommand}">
+                    <TextBlock>12</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding EditCommand}">
+                    <TextBlock>1</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding SaveCommand}">
+                    <TextBlock>2</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}">
+                    <TextBlock>3</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding ExitCommand}">
+                    <TextBlock>4</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>5</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>6</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>7</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>8</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>9</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                    <TextBlock>10</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}" Margin="50" Height="Auto" Width="Auto">
+                    <TextBlock>11</TextBlock>
+                </RadialMenu:RadialMenuItem>
+
+                <!-- Add items as you want... -->
+
+            </RadialMenu:RadialMenu>
+        </Grid>
+
+    </Grid>
+</UserControl>
