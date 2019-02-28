@@ -53,6 +53,9 @@
             this.startButtonBackground = new System.Windows.Forms.Panel();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.userControl11 = new WpfControlLibrary1.UserControl1();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.fps = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -108,6 +111,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox2
@@ -302,12 +306,32 @@
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(500, 602);
+            this.elementHost1.Location = new System.Drawing.Point(497, 602);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(277, 254);
+            this.elementHost1.Size = new System.Drawing.Size(289, 275);
             this.elementHost1.TabIndex = 30;
-            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Text = "t";
             this.elementHost1.Child = this.userControl11;
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // fps
+            // 
+            this.fps.AutoSize = true;
+            this.fps.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fps.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.fps.Location = new System.Drawing.Point(118, 716);
+            this.fps.Name = "fps";
+            this.fps.Size = new System.Drawing.Size(34, 24);
+            this.fps.TabIndex = 31;
+            this.fps.Text = "fps";
+            this.fps.Visible = false;
             // 
             // MWC
             // 
@@ -315,6 +339,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1884, 1021);
+            this.Controls.Add(this.fps);
             this.Controls.Add(this.buttonIndicator);
             this.Controls.Add(this.recordingTime);
             this.Controls.Add(this.stopButton);
@@ -338,11 +363,13 @@
             this.Controls.Add(this.elementHost1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MWC";
             this.Text = "MWC";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResizeEnd += new System.EventHandler(this.MWC_ResizeEnd);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MWC_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -375,6 +402,9 @@
         private System.Windows.Forms.Panel startButtonBackground;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private WpfControlLibrary1.UserControl1 userControl11;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Label fps;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -18,6 +18,7 @@ using Microsoft.Expression.Encoder.ScreenCapture;
 
 namespace WindowCapture
 {
+    
     public partial class MWC : Form
     {
         private DateTime startingTime, sTime;
@@ -25,6 +26,7 @@ namespace WindowCapture
         private string p1name, p2name, p3name;
         static Size e = Screen.PrimaryScreen.Bounds.Size;
         Bitmap temp = new Bitmap(e.Width, e.Height);
+        public static int circlePosition = 0;
 
 
         public MWC()
@@ -63,7 +65,7 @@ namespace WindowCapture
             RECT rc;
             GetWindowRect(hwnd, out rc);
 
-            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format24bppRgb);
+            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format32bppPArgb);
             Graphics gfxBmp = Graphics.FromImage(bmp);
             IntPtr hdcBitmap = gfxBmp.GetHdc();
 
@@ -100,59 +102,21 @@ namespace WindowCapture
             //Debug.WriteLine(img.Size);
             //return img;
         }
-        
+        int count = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            count += 1;
             if (selfCapture != null && selfCapture.Status == RecordStatus.Running)
             {
                 recordingTime.Text = (DateTime.Now - startingTime).ToString("c");
             }
-            
-            Process proc1 = null;
-            Process proc2 = null;
-            Process proc3 = null;
+
             if (p1name + p2name + p3name != "")
             {
-                //MessageBox.Show(p1name + p2name + p3name);
-                
-                if (p1name != "" && Process.GetProcessesByName(p1name).Length > 0)
-                {
-                    
-                    proc1 = Process.GetProcessesByName(p1name)[0];
-                    if (IsIconic(proc1.MainWindowHandle))
-                    {
-                        ShowWindow(proc1.MainWindowHandle, 9);
-                    }
-                    pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
-                    
-                }
+                CaptureThread1();
+                CaptureThread2();
+                CaptureThread3();
 
-                if (p2name != "" && Process.GetProcessesByName(p2name).Length > 0)
-                {
-                    
-                    proc2 = Process.GetProcessesByName(p2name)[0];
-                    if (IsIconic(proc2.MainWindowHandle))
-                    {
-                        ShowWindow(proc2.MainWindowHandle, 9);
-                    }
-                    pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);
-                    
-
-                }
-
-                if (p3name != "" && Process.GetProcessesByName(p3name).Length > 0)
-                {
-                    
-                    proc3 = Process.GetProcessesByName(p3name)[0];
-                    if (IsIconic(proc3.MainWindowHandle))
-                    {
-                        ShowWindow(proc3.MainWindowHandle, 9);
-                    }
-                    pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
-                    
-
-                }
-                
             }
 
             else
@@ -175,6 +139,9 @@ namespace WindowCapture
         {
             indicator_mover(button1);
             timer1.Enabled = true;
+            //timer2.Enabled = true;
+            //timer3.Enabled = true;
+
             if (p1name == "")
                 MessageBox.Show("Process 1 not found or empty");
             if (p2name == "")
@@ -182,14 +149,15 @@ namespace WindowCapture
             if (p3name == "")
                 MessageBox.Show("Process 3 not found or empty");
             sTime = DateTime.Now;
-            //Debug.WriteLine(sTime);
-            //Debug.WriteLine("c:\\Users\\gsp\\Desktop\\test_" + DateTime.Now + ".jpg");
+            Debug.WriteLine(Process.GetCurrentProcess().Threads.Count);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             indicator_mover(button2);
             timer1.Enabled = false;
+            timer2.Enabled = false;
+            timer3.Enabled = false;
         }
 
         private Bitmap cropImage(Bitmap img)
@@ -232,6 +200,9 @@ namespace WindowCapture
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Interval = 1;
+            timer2.Interval = 1000;
+            timer3.Interval = 10;
             if (Convert.ToInt32(Properties.Settings.Default["formBorderStyle"]) == 0)
             {
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -243,10 +214,9 @@ namespace WindowCapture
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
             recordingTime.ReadOnly = true;
-            //this.AutoSize = true;
-            //this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        }
 
+        }
+  
         private void p1Name_TextChanged(object sender, EventArgs e)
         {
             p1name = p1Name.Text;
@@ -290,7 +260,7 @@ namespace WindowCapture
                 stopButton.Location = new Point(stopButton.Location.X, pictureBox1.Size.Height + 66);
                 recordingTime.Location = new Point(recordingTime.Location.X, pictureBox1.Size.Height + 66);
                 elementHost1.Location = new Point(p3Name.Location.X + 46, p3Name.Location.Y);
-
+                startButtonBackground.Location = new Point(startButton.Location.X - 5, startButton.Location.Y - 4);
             }
 
 
@@ -304,7 +274,16 @@ namespace WindowCapture
 
         }
 
-        
+        private void MWC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.S)
+            {
+                CAPTURE f2 = new CAPTURE();
+                Bitmap save = CaptureDesktop();
+                f2.SetPic(cropImage(save));
+                f2.Show();
+            }
+        }
 
         void StartRecording()
         {
@@ -364,5 +343,73 @@ namespace WindowCapture
             selfCapture.Dispose();
             
         }
+        int seconds = 0;
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Debug.WriteLine(count);
+            seconds += 1;
+            fps.Text = (count / seconds).ToString();
+
+            //if (p1name + p2name + p3name != "")
+            //{
+            //    CaptureThread2();
+            //}
+            //else
+            //{
+            //    timer2.Stop();
+            //    MessageBox.Show("Process Name Can Not Be Empty"); //"steam" change to process name variable
+            //}
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            if (p1name + p2name + p3name != "")
+                {
+                    CaptureThread3();
+                }
+                else
+                {
+                timer3.Stop();
+                MessageBox.Show("Process Name Can Not Be Empty"); //"steam" change to process name variable
+            }
+        }
+
+        
+
+        private void CaptureThread1()
+        {
+            Process proc1 = null;
+            
+            proc1 = Process.GetProcessesByName(p1name)[0];
+            if (IsIconic(proc1.MainWindowHandle))
+            {
+                //ShowWindow(proc1.MainWindowHandle, 9);
+            }
+            if (pictureBox1.Image != null) pictureBox1.Image.Dispose();
+            pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
+            
+        }
+        private void CaptureThread2()
+        {
+            Process proc2 = null;
+            proc2 = Process.GetProcessesByName(p2name)[0];
+            if (IsIconic(proc2.MainWindowHandle))
+            {
+                //ShowWindow(proc1.MainWindowHandle, 9);
+            }
+            if (pictureBox2.Image != null) pictureBox2.Image.Dispose();
+            pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);        }
+        private void CaptureThread3()
+        {
+            Process proc3 = null;
+            proc3 = Process.GetProcessesByName(p3name)[0];
+            if (IsIconic(proc3.MainWindowHandle))
+            {
+                //ShowWindow(proc1.MainWindowHandle, 9);
+            }
+            if (pictureBox3.Image != null) pictureBox3.Image.Dispose();
+            pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
+        }
+
     }
 }

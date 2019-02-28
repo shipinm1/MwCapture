@@ -1,10 +1,10 @@
-C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\UserControl1.g.cs
-C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.cache
-C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.lref
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\WpfControlLibrary1.dll
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\WpfControlLibrary1.pdb
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\RadialMenu.dll
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\RadialMenu.pdb
+C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\UserControl1.g.cs
+C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.cache
+C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.lref
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\UserControl1.baml
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.g.resources
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.Properties.Resources.resources

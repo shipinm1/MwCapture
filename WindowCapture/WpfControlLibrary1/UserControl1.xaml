@@ -9,8 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-
+        <Grid Grid.Row="0">
+            <Rectangle x:Name = "mrRec" Fill = "AliceBlue" MouseDown = "OnMouseDown" Margin = "2,2,2,2"/>
             <!--<RadialMenu:RadialMenu IsOpen="{Binding IsOpen}">-->
             <RadialMenu:RadialMenu IsOpen="True" HalfShiftedItems="True">
                 <!-- CentralMenuItem -->
@@ -23,57 +23,68 @@
 
                 <!-- MenuItems Around -->
 
-                <RadialMenu:RadialMenuItem Command="{Binding NewFileCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command12}">
                     <TextBlock>12</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding EditCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command1}">
                     <TextBlock>1</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding SaveCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command2}">
                     <TextBlock>2</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command3}">
                     <TextBlock>3</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding ExitCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command4}">
                     <TextBlock>4</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command5}">
                     <TextBlock>5</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command6}">
                     <TextBlock>6</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command7}">
                     <TextBlock>7</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command8}">
                     <TextBlock>8</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command9}">
                     <TextBlock>9</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}">
+                <RadialMenu:RadialMenuItem Command="{Binding Command10}">
                     <TextBlock>10</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
-                <RadialMenu:RadialMenuItem Command="{Binding TestCommand}" Margin="50" Height="Auto" Width="Auto">
+                <RadialMenu:RadialMenuItem Command="{Binding Command11}" Margin="50" Height="Auto" Width="Auto">
                     <TextBlock>11</TextBlock>
                 </RadialMenu:RadialMenuItem>
 
                 <!-- Add items as you want... -->
 
             </RadialMenu:RadialMenu>
+            
+            <Ellipse x:Name="redCircle" HorizontalAlignment="Left" Height="30" Margin="135,135,0,0" VerticalAlignment="Top" Width="30">
+                <Ellipse.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FFEE281F" Offset="1"/>
+                        <GradientStop Color="#FFFF3C33" Offset="0.4"/>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+
         </Grid>
 
     </Grid>
