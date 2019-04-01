@@ -158,7 +158,7 @@ namespace WpfControlLibrary1
             redCircle.RenderTransform = newlocation;
             //Point relativePoint = redCircle.TransformToAncestor(mrRec).Transform(new Point(0, 0));
             //Debug.WriteLine("circle position: " + relativePoint.ToString());
-            Debug.WriteLine("mouse position: " + pnt.ToString());
+            //Debug.WriteLine("mouse position: " + pnt.ToString());
         }
 
 

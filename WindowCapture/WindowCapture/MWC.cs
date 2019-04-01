@@ -27,6 +27,8 @@ namespace WindowCapture
         static Size e = Screen.PrimaryScreen.Bounds.Size;
         Bitmap temp = new Bitmap(e.Width, e.Height);
         public static int circlePosition = 0;
+        Process proc1, proc2, proc3;
+        private bool p1, p2, p3;
 
 
         public MWC()
@@ -65,18 +67,27 @@ namespace WindowCapture
             RECT rc;
             GetWindowRect(hwnd, out rc);
 
-            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format32bppPArgb);
-            Graphics gfxBmp = Graphics.FromImage(bmp);
-            IntPtr hdcBitmap = gfxBmp.GetHdc();
-
-            PrintWindow(hwnd, hdcBitmap, 0);
-
-            gfxBmp.ReleaseHdc(hdcBitmap);
-            gfxBmp.Dispose();
+            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format24bppRgb);
             
-            return bmp;
+                using (Graphics gfxBmp = Graphics.FromImage(bmp))
+                {
+                    IntPtr hdcBitmap = gfxBmp.GetHdc();
+                    try
+                    {
+                        PrintWindow(hwnd, hdcBitmap, 0);
+                    }
+                    finally
+                    {
+                        gfxBmp.ReleaseHdc(hdcBitmap);
+                    }
+
+                    //gfxBmp.Dispose();
+                    return bmp;
+                }
+                
             
         }
+
 
         public static Bitmap CaptureDesktop()
         {
@@ -105,27 +116,19 @@ namespace WindowCapture
         int count = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            count += 1;
+            //count += 1;
             if (selfCapture != null && selfCapture.Status == RecordStatus.Running)
             {
                 recordingTime.Text = (DateTime.Now - startingTime).ToString("c");
             }
-
-            if (p1name + p2name + p3name != "")
-            {
+            if (p1)
                 CaptureThread1();
+            if (p2)
                 CaptureThread2();
+            if (p3)
                 CaptureThread3();
 
-            }
 
-            else
-            {
-                timer1.Stop();
-                MessageBox.Show("Process Name Can Not Be Empty"); //"steam" change to process name variable
-
-            }
-         
         }
 
         void indicator_mover(Button button)
@@ -135,29 +138,39 @@ namespace WindowCapture
             buttonIndicator.Top = button.Top;
         }
 
+        //Load button
         private void button1_Click(object sender, EventArgs e)
         {
             indicator_mover(button1);
+            if (Process.GetProcessesByName(p1name).Length != 0)
+                p1 = true;
+            else MessageBox.Show("Process 1 not found");
+            if (Process.GetProcessesByName(p2name).Length != 0)
+                p2 = true;
+            else MessageBox.Show("Process 2 not found");
+            if (Process.GetProcessesByName(p3name).Length != 0)
+                p3 = true;
+            else MessageBox.Show("Process 3 not found");
             timer1.Enabled = true;
             //timer2.Enabled = true;
             //timer3.Enabled = true;
-
-            if (p1name == "")
-                MessageBox.Show("Process 1 not found or empty");
-            if (p2name == "")
-                MessageBox.Show("Process 2 not found or empty");
-            if (p3name == "")
-                MessageBox.Show("Process 3 not found or empty");
+            p1Name.ReadOnly = true;
+            p2Name.ReadOnly = true;
+            p3Name.ReadOnly = true;
+            
             sTime = DateTime.Now;
-            Debug.WriteLine(Process.GetCurrentProcess().Threads.Count);
         }
 
+        //stop button
         private void button2_Click(object sender, EventArgs e)
         {
             indicator_mover(button2);
             timer1.Enabled = false;
             timer2.Enabled = false;
             timer3.Enabled = false;
+            p1Name.ReadOnly = false;
+            p2Name.ReadOnly = false;
+            p3Name.ReadOnly = false;
         }
 
         private Bitmap cropImage(Bitmap img)
@@ -243,7 +256,7 @@ namespace WindowCapture
             double formWidth = this.Size.Width;
             double ratio = 1.875;
             double secondaryRatio = 2.8;
-            if (this.Size.Height < 1060 && this.Size.Width < 1900)
+            if (this.Size.Height < 1060 || this.Size.Width < 1900)
             {
                 pictureBox1.Size = new Size((int)(formWidth / ratio), (int)(formHeight / ratio));
                 pictureBox2.Size = new Size((int)(formWidth / secondaryRatio), (int)(formHeight / secondaryRatio));
@@ -273,17 +286,7 @@ namespace WindowCapture
             startingTime = DateTime.Now;
 
         }
-
-        private void MWC_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.S)
-            {
-                CAPTURE f2 = new CAPTURE();
-                Bitmap save = CaptureDesktop();
-                f2.SetPic(cropImage(save));
-                f2.Show();
-            }
-        }
+        
 
         void StartRecording()
         {
@@ -326,8 +329,8 @@ namespace WindowCapture
                 if (selfCapture.Status == RecordStatus.Running)
                     selfCapture.Stop();
             }
-            //else
-                //MessageBox.Show("Recording not started.");
+            else
+                MessageBox.Show("Recording not started.");
         }
 
         
@@ -378,14 +381,14 @@ namespace WindowCapture
 
         private void CaptureThread1()
         {
-            Process proc1 = null;
+            proc1 = null;
             
             proc1 = Process.GetProcessesByName(p1name)[0];
-            if (IsIconic(proc1.MainWindowHandle))
-            {
-                //ShowWindow(proc1.MainWindowHandle, 9);
-            }
-            if (pictureBox1.Image != null) pictureBox1.Image.Dispose();
+            //if (IsIconic(proc1.MainWindowHandle))
+            //{
+            //    //ShowWindow(proc1.MainWindowHandle, 9);
+            //}
+            //if (pictureBox1.Image != null) pictureBox1.Image.Dispose();
             pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
             
         }
@@ -393,21 +396,21 @@ namespace WindowCapture
         {
             Process proc2 = null;
             proc2 = Process.GetProcessesByName(p2name)[0];
-            if (IsIconic(proc2.MainWindowHandle))
-            {
-                //ShowWindow(proc1.MainWindowHandle, 9);
-            }
-            if (pictureBox2.Image != null) pictureBox2.Image.Dispose();
+            //if (IsIconic(proc2.MainWindowHandle))
+            //{
+            //    //ShowWindow(proc2.MainWindowHandle, 9);
+            //}
+            //if (pictureBox2.Image != null) pictureBox2.Image.Dispose();
             pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);        }
         private void CaptureThread3()
         {
             Process proc3 = null;
             proc3 = Process.GetProcessesByName(p3name)[0];
-            if (IsIconic(proc3.MainWindowHandle))
-            {
-                //ShowWindow(proc1.MainWindowHandle, 9);
-            }
-            if (pictureBox3.Image != null) pictureBox3.Image.Dispose();
+            //if (IsIconic(proc3.MainWindowHandle))
+            //{
+            //    //ShowWindow(proc3.MainWindowHandle, 9);
+            //}
+            //if (pictureBox3.Image != null) pictureBox3.Image.Dispose();
             pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
         }
 
