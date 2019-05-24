@@ -14,12 +14,31 @@ using Microsoft.Expression.Encoder;
 using Microsoft.Expression.Encoder.Devices;
 using Microsoft.Expression.Encoder.ScreenCapture;
 using System.Drawing.Drawing2D;
-
+#region Summary
+/// <summary>
+/// Main Function:
+/// 1. Capture up to 3 windows and display at once.
+///     (Using DWM api -- thumbnail, to capture the target window for best performance)
+/// 2. Record all actions within the application
+///     (express encoder 4)
+/// 3. Capture the current state of this application and store as image file
+/// 4. Direction indicator(radian button)
+///     (for specific need by client)
+/// 
+/// Developer: Max Guan
+/// Version: 1.0.1
+/// Time: May 23, 2019
+/// reference: http://bartdesmet.net/blogs/bart/archive/2006/10/05/4495.aspx
+///            https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/walkthrough-hosting-a-windows-forms-control-in-wpf
+/// </summary>
+#endregion
 namespace WindowCapture
 {
     
     public partial class MWC : Form
     {
+        #region variables
+        private IntPtr pBox1Ptr, pBox2Ptr, pBox3Ptr;
         private DateTime startingTime, sTime;
         private ScreenCaptureJob selfCapture;
         private string p1name, p2name, p3name;
@@ -27,8 +46,7 @@ namespace WindowCapture
         Bitmap temp = new Bitmap(e.Width, e.Height);
         public static int circlePosition = 0;
         Process proc1, proc2, proc3;
-        private bool p1, p2, p3;
-
+        #endregion
 
         public MWC()
         {
@@ -36,7 +54,6 @@ namespace WindowCapture
             buttonIndicator.Visible = false;
             startButtonBackground.Visible = false;
             DoubleBuffered = true;
-
         }
 
         #region Preperation block(dlls & structs)
@@ -97,6 +114,7 @@ namespace WindowCapture
         static extern int DwmUnregisterThumbnail(IntPtr thumb);
 
         #endregion
+
         //Take bitmap cauture from target application
         public static Bitmap CaptureApplication(IntPtr hwnd) {
             RECT rc;
@@ -126,7 +144,7 @@ namespace WindowCapture
             return bmp;
         }
         
-        //timer1 per tick actions
+        //timer1 per tick actions (recording time increamentation)
         private void timer1_Tick(object sender, EventArgs e)
         {
             sTime = DateTime.Now;
@@ -151,9 +169,9 @@ namespace WindowCapture
             p1LoadButt.BackColor = Color.Gray;
             p2LoadButt.BackColor = Color.Gray;
             p3LoadButt.BackColor = Color.Gray;
-            DwmUnregisterThumbnail(proc1.MainWindowHandle);
-            DwmUnregisterThumbnail(proc2.MainWindowHandle);
-            DwmUnregisterThumbnail(proc3.MainWindowHandle);
+            DwmUnregisterThumbnail(pBox1Ptr);
+            DwmUnregisterThumbnail(pBox2Ptr);
+            DwmUnregisterThumbnail(pBox3Ptr);
             
         }
 
@@ -167,7 +185,7 @@ namespace WindowCapture
             Bitmap b = new Bitmap(img);
             return b.Clone(cropArea, b.PixelFormat);
         }
-
+        //Capture button click event
         private void capture_Click(object sender, EventArgs e)
         {
             CAPTURE f2 = new CAPTURE();
@@ -177,7 +195,7 @@ namespace WindowCapture
             //f2.SetPic(cropImage(save));
             f2.Show();
         }
-
+        //EXIT button click event
         private void exitButton_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default["p1"] = p1Name.Text;
@@ -186,13 +204,14 @@ namespace WindowCapture
             Properties.Settings.Default.Save();
             this.Close();
         }
-
+        //Setting button click event
         private void setting_Click(object sender, EventArgs e)
         {
             SETTING f3 = new SETTING();
             f3.Show();
         }
 
+        //Actions when main form was loading
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Interval = 1000;
@@ -209,6 +228,7 @@ namespace WindowCapture
             recordingTime.ReadOnly = true;
         }
   
+
         private void p1Name_TextChanged(object sender, EventArgs e)
         {
             p1name = p1Name.Text;
@@ -257,7 +277,7 @@ namespace WindowCapture
 
 
         }
-
+        //Start button click event
         private void startButton_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
@@ -267,7 +287,7 @@ namespace WindowCapture
 
         }
         
-
+        //Recording function
         void StartRecording()
         {
             selfCapture = new ScreenCaptureJob();
@@ -290,8 +310,6 @@ namespace WindowCapture
                 selfRec = new RECT(0, 0, rectArea.Width - (rectArea.Width % 4), rectArea.Height - (rectArea.Height % 4));
             }
             
-            //Debug.WriteLine(selfRec.Size.Width % 4);
-            //Debug.WriteLine(selfRec.Size.Height % 4);
             selfCapture.CaptureRectangle = selfRec;
             selfCapture.ShowFlashingBoundary = true;
             selfCapture.CaptureMouseCursor = true;
@@ -301,6 +319,7 @@ namespace WindowCapture
             
         }
 
+        //Stop recording button click event
         private void stopButton_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
@@ -314,7 +333,7 @@ namespace WindowCapture
                 MessageBox.Show("Recording not started.");
         }
         
-
+        //Main Form closing event(storing variables for next use)
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default["p1"] = p1Name.Text;
@@ -327,28 +346,29 @@ namespace WindowCapture
             
         }
 
+        //load picture box 1 with DWM thumbnail
         private void p1LoadButt_Click(object sender, EventArgs e)
         {
             p1Name.ReadOnly = true;
             p1LoadButt.BackColor = Color.Red;
             proc1 = Process.GetProcessesByName(p1name)[0];
-            getSource(proc1, pictureBox1);
+            pBox1Ptr = getSource(proc1, pictureBox1);
         }
-
+        //load picture box 2 with DWM thumbnail
         private void p2LoadButt_Click(object sender, EventArgs e)
         {
             p2Name.ReadOnly = true;
             p2LoadButt.BackColor = Color.Red;
             proc2 = Process.GetProcessesByName(p2name)[0];
-            getSource(proc2, pictureBox2);
+            pBox2Ptr = getSource(proc2, pictureBox2);
         }
-
+        //load picture box 3 with DWM thumbnail
         private void p3LoadButt_Click(object sender, EventArgs e)
         {
             p3Name.ReadOnly = true;
             p3LoadButt.BackColor = Color.Red;
             proc3 = Process.GetProcessesByName(p3name)[0];
-            getSource(proc3, pictureBox3);
+            pBox3Ptr = getSource(proc3, pictureBox3);
         }
 
         //Background color gradient
@@ -360,8 +380,8 @@ namespace WindowCapture
             }
         }
 
-        //DMW method to get the thumbnail from target application
-        private void getSource(Process proc, PictureBox pBox)
+        //DWM method to get the thumbnail from target application
+        private IntPtr getSource(Process proc, PictureBox pBox)
         {
             RECT rc;
             IntPtr hc;
@@ -375,6 +395,7 @@ namespace WindowCapture
             props.opacity = 255;
             props.fVisible = true;
             props.rcDestination = new Rect(pBox.Left, pBox.Top, pBox.Right, pBox.Bottom);
+
             if (size.x < pBox.Width)
                 props.rcDestination.Right = props.rcDestination.Left + size.x;
 
@@ -382,6 +403,7 @@ namespace WindowCapture
                 props.rcDestination.Bottom = props.rcDestination.Top + size.y;
 
             DwmUpdateThumbnailProperties(hc, ref props);
+            return hc;
         }
     }
 }
