@@ -1,7 +1,8 @@
 # MwCapture
--------------
+
 A windows monitoring application
 -------------
+
 
 ## MAIN FUNCTIONS:
 
@@ -12,6 +13,7 @@ Capture current state of the application and store as an image
 Record all actions within the application/current desktop
 
 Direction indicator (for specifit client need)  
+
 
 
 ## To Use
