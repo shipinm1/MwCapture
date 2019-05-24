@@ -13,3 +13,18 @@ C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfC
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csproj.CopyComplete
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.dll
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\WpfControlLibrary1.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\WpfControlLibrary1.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\RadialMenu.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\bin\Debug\RadialMenu.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\UserControl1.g.cs
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1_MarkupCompile.lref
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\UserControl1.baml
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.g.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.Properties.Resources.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csproj.GenerateResource.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csproj.CopyComplete
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.pdb

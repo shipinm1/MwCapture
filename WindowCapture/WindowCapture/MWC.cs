@@ -13,8 +13,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Expression.Encoder;
 using Microsoft.Expression.Encoder.Devices;
 using Microsoft.Expression.Encoder.ScreenCapture;
-
-
+using System.Drawing.Drawing2D;
 
 namespace WindowCapture
 {
@@ -40,10 +39,41 @@ namespace WindowCapture
 
         }
 
-        //private void StartProcess_Click(object sender, EventArgs e)
-        //{
-        //   Process.Start(@"C:\Program Files (x86)\Steam\Steam.exe");
-        //}
+        #region Preperation block(dlls & structs)
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct DWM_THUMBNAIL_PROPERTIES
+        {
+            public int dwFlags;
+            public Rect rcDestination;
+            public Rect rcSource;
+            public byte opacity;
+            public bool fVisible;
+            public bool fSourceClientAreaOnly;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Rect
+        {
+            internal Rect(int left, int top, int right, int bottom)
+            {
+                Left = left;
+                Top = top;
+                Right = right;
+                Bottom = bottom;
+            }
+
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct PSIZE
+        {
+            public int x;
+            public int y;
+        }
 
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
@@ -52,23 +82,26 @@ namespace WindowCapture
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsIconic(IntPtr hWnd);
-        [DllImport("user32")]
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool ShowWindow(IntPtr hWnd, int flags);
         [DllImport("user32.dll", EntryPoint = "GetDesktopWindow")]
         private static extern IntPtr GetDesktopWindow();
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmRegisterThumbnail(IntPtr dest, IntPtr source, out IntPtr thumb);
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmUpdateThumbnailProperties(IntPtr thumb, ref DWM_THUMBNAIL_PROPERTIES props);
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmQueryThumbnailSourceSize(IntPtr thumb, out PSIZE size);
+        [DllImport("dwmapi.dll")]
+        static extern int DwmUnregisterThumbnail(IntPtr thumb);
 
-        // [DllImport("user32.dll")]
-        //public static extern IntPtr CreateRectRgn(int x, int y, int z, int c);
-        // [DllImport("user32.dll")]
-        //public static extern int GetWindowRgn(IntPtr hWnd, IntPtr hRgn);
-
+        #endregion
+        //Take bitmap cauture from target application
         public static Bitmap CaptureApplication(IntPtr hwnd) {
             RECT rc;
             GetWindowRect(hwnd, out rc);
-
             Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format24bppRgb);
-            
                 using (Graphics gfxBmp = Graphics.FromImage(bmp))
                 {
                     IntPtr hdcBitmap = gfxBmp.GetHdc();
@@ -80,57 +113,27 @@ namespace WindowCapture
                     {
                         gfxBmp.ReleaseHdc(hdcBitmap);
                     }
-
-                    //gfxBmp.Dispose();
                     return bmp;
                 }
-                
-            
         }
-
-
+        //capture whole desktop as bitmap
         public static Bitmap CaptureDesktop()
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format24bppRgb);
             Graphics gfxBmp = Graphics.FromImage(bmp);
             gfxBmp.CopyFromScreen(0, 0, 0, 0, bmp.Size);
-            
             gfxBmp.Dispose();
-
             return bmp;
         }
-
-
-        private void Get_source()
-        {
-            //Size e = Screen.PrimaryScreen.Bounds.Size;
-            //Bitmap img = new Bitmap(e.Width, e.Height);
-            using (Graphics g = Graphics.FromImage(temp))
-            {
-                g.CopyFromScreen(0, 0, 0, 0, e);
-            }
-            //y += 1;
-            //Debug.WriteLine(img.Size);
-            //return img;
-        }
-        int count = 0;
+        
+        //timer1 per tick actions
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //count += 1;
-            if (selfCapture != null && selfCapture.Status == RecordStatus.Running)
-            {
-                recordingTime.Text = (DateTime.Now - startingTime).ToString("c");
-            }
-            if (p1)
-                CaptureThread1();
-            if (p2)
-                CaptureThread2();
-            if (p3)
-                CaptureThread3();
-
-
+            sTime = DateTime.Now;
+            recordingTime.Text = (sTime - startingTime).ToString();
         }
 
+        //move indicator to target button and transfor to suitable size
         void indicator_mover(Button button)
         {
             buttonIndicator.Visible = true;
@@ -138,39 +141,20 @@ namespace WindowCapture
             buttonIndicator.Top = button.Top;
         }
 
-        //Load button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            indicator_mover(button1);
-            if (Process.GetProcessesByName(p1name).Length != 0)
-                p1 = true;
-            else MessageBox.Show("Process 1 not found");
-            if (Process.GetProcessesByName(p2name).Length != 0)
-                p2 = true;
-            else MessageBox.Show("Process 2 not found");
-            if (Process.GetProcessesByName(p3name).Length != 0)
-                p3 = true;
-            else MessageBox.Show("Process 3 not found");
-            timer1.Enabled = true;
-            //timer2.Enabled = true;
-            //timer3.Enabled = true;
-            p1Name.ReadOnly = true;
-            p2Name.ReadOnly = true;
-            p3Name.ReadOnly = true;
-            
-            sTime = DateTime.Now;
-        }
-
-        //stop button
+        //resetButt button click event
         private void button2_Click(object sender, EventArgs e)
         {
-            indicator_mover(button2);
-            timer1.Enabled = false;
-            timer2.Enabled = false;
-            timer3.Enabled = false;
+            indicator_mover(resetButt);
             p1Name.ReadOnly = false;
             p2Name.ReadOnly = false;
             p3Name.ReadOnly = false;
+            p1LoadButt.BackColor = Color.Gray;
+            p2LoadButt.BackColor = Color.Gray;
+            p3LoadButt.BackColor = Color.Gray;
+            DwmUnregisterThumbnail(proc1.MainWindowHandle);
+            DwmUnregisterThumbnail(proc2.MainWindowHandle);
+            DwmUnregisterThumbnail(proc3.MainWindowHandle);
+            
         }
 
         private Bitmap cropImage(Bitmap img)
@@ -186,7 +170,6 @@ namespace WindowCapture
 
         private void capture_Click(object sender, EventArgs e)
         {
-            //indicator_mover(capture);
             CAPTURE f2 = new CAPTURE();
             //Bitmap save = CaptureApplication(this.Handle);
             Bitmap save = CaptureDesktop();
@@ -206,16 +189,13 @@ namespace WindowCapture
 
         private void setting_Click(object sender, EventArgs e)
         {
-            //indicator_mover(setting);
             SETTING f3 = new SETTING();
             f3.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer1.Interval = 1;
-            timer2.Interval = 1000;
-            timer3.Interval = 10;
+            timer1.Interval = 1000;
             if (Convert.ToInt32(Properties.Settings.Default["formBorderStyle"]) == 0)
             {
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -227,7 +207,6 @@ namespace WindowCapture
             p2Name.Text = Properties.Settings.Default["p2"].ToString();
             p3Name.Text = Properties.Settings.Default["p3"].ToString();
             recordingTime.ReadOnly = true;
-
         }
   
         private void p1Name_TextChanged(object sender, EventArgs e)
@@ -281,6 +260,7 @@ namespace WindowCapture
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             startButtonBackground.Visible = true;
             StartRecording();
             startingTime = DateTime.Now;
@@ -323,6 +303,7 @@ namespace WindowCapture
 
         private void stopButton_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             startButtonBackground.Visible = false;
             if (selfCapture != null)
             {
@@ -332,7 +313,6 @@ namespace WindowCapture
             else
                 MessageBox.Show("Recording not started.");
         }
-
         
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -346,73 +326,62 @@ namespace WindowCapture
             selfCapture.Dispose();
             
         }
-        int seconds = 0;
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            Debug.WriteLine(count);
-            seconds += 1;
-            fps.Text = (count / seconds).ToString();
 
-            //if (p1name + p2name + p3name != "")
-            //{
-            //    CaptureThread2();
-            //}
-            //else
-            //{
-            //    timer2.Stop();
-            //    MessageBox.Show("Process Name Can Not Be Empty"); //"steam" change to process name variable
-            //}
+        private void p1LoadButt_Click(object sender, EventArgs e)
+        {
+            p1Name.ReadOnly = true;
+            p1LoadButt.BackColor = Color.Red;
+            proc1 = Process.GetProcessesByName(p1name)[0];
+            getSource(proc1, pictureBox1);
         }
 
-        private void timer3_Tick(object sender, EventArgs e)
+        private void p2LoadButt_Click(object sender, EventArgs e)
         {
-            if (p1name + p2name + p3name != "")
-                {
-                    CaptureThread3();
-                }
-                else
-                {
-                timer3.Stop();
-                MessageBox.Show("Process Name Can Not Be Empty"); //"steam" change to process name variable
+            p2Name.ReadOnly = true;
+            p2LoadButt.BackColor = Color.Red;
+            proc2 = Process.GetProcessesByName(p2name)[0];
+            getSource(proc2, pictureBox2);
+        }
+
+        private void p3LoadButt_Click(object sender, EventArgs e)
+        {
+            p3Name.ReadOnly = true;
+            p3LoadButt.BackColor = Color.Red;
+            proc3 = Process.GetProcessesByName(p3name)[0];
+            getSource(proc3, pictureBox3);
+        }
+
+        //Background color gradient
+        private void MWC_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.WhiteSmoke, Color.Gray, 90F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
 
-        
+        //DMW method to get the thumbnail from target application
+        private void getSource(Process proc, PictureBox pBox)
+        {
+            RECT rc;
+            IntPtr hc;
+            GetWindowRect(proc.MainWindowHandle, out rc);
+            DwmRegisterThumbnail(this.Handle, proc.MainWindowHandle, out hc);
+            //Connect target window with this window
+            DwmQueryThumbnailSourceSize(hc, out PSIZE size);
+            //setting properties for thumbnail
+            DWM_THUMBNAIL_PROPERTIES props = new DWM_THUMBNAIL_PROPERTIES();
+            props.dwFlags = DWMApi.DWM_TNP_VISIBLE | DWMApi.DWM_TNP_RECTDESTINATION | DWMApi.DWM_TNP_OPACITY;
+            props.opacity = 255;
+            props.fVisible = true;
+            props.rcDestination = new Rect(pBox.Left, pBox.Top, pBox.Right, pBox.Bottom);
+            if (size.x < pBox.Width)
+                props.rcDestination.Right = props.rcDestination.Left + size.x;
 
-        private void CaptureThread1()
-        {
-            proc1 = null;
-            
-            proc1 = Process.GetProcessesByName(p1name)[0];
-            //if (IsIconic(proc1.MainWindowHandle))
-            //{
-            //    //ShowWindow(proc1.MainWindowHandle, 9);
-            //}
-            //if (pictureBox1.Image != null) pictureBox1.Image.Dispose();
-            pictureBox1.Image = CaptureApplication(proc1.MainWindowHandle);
-            
-        }
-        private void CaptureThread2()
-        {
-            Process proc2 = null;
-            proc2 = Process.GetProcessesByName(p2name)[0];
-            //if (IsIconic(proc2.MainWindowHandle))
-            //{
-            //    //ShowWindow(proc2.MainWindowHandle, 9);
-            //}
-            //if (pictureBox2.Image != null) pictureBox2.Image.Dispose();
-            pictureBox2.Image = CaptureApplication(proc2.MainWindowHandle);        }
-        private void CaptureThread3()
-        {
-            Process proc3 = null;
-            proc3 = Process.GetProcessesByName(p3name)[0];
-            //if (IsIconic(proc3.MainWindowHandle))
-            //{
-            //    //ShowWindow(proc3.MainWindowHandle, 9);
-            //}
-            //if (pictureBox3.Image != null) pictureBox3.Image.Dispose();
-            pictureBox3.Image = CaptureApplication(proc3.MainWindowHandle);
-        }
+            if (size.y < pBox.Height)
+                props.rcDestination.Bottom = props.rcDestination.Top + size.y;
 
+            DwmUpdateThumbnailProperties(hc, ref props);
+        }
     }
 }

@@ -8,9 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+
         <Grid Grid.Row="0">
-            <Rectangle x:Name = "mrRec" Fill = "AliceBlue" MouseDown = "OnMouseDown" Margin = "2,2,2,2"/>
+            <Rectangle x:Name = "mrRec" MouseDown = "OnMouseDown" Margin = "2,2,2,2">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <!--<RadialMenu:RadialMenu IsOpen="{Binding IsOpen}">-->
             <RadialMenu:RadialMenu IsOpen="True" HalfShiftedItems="True">
                 <!-- CentralMenuItem -->
@@ -74,7 +81,7 @@
                 <!-- Add items as you want... -->
 
             </RadialMenu:RadialMenu>
-            
+
             <Ellipse x:Name="redCircle" HorizontalAlignment="Left" Height="30" Margin="135,135,0,0" VerticalAlignment="Top" Width="30">
                 <Ellipse.Fill>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

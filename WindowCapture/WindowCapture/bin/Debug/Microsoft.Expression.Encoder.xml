@@ -49,7 +49,7 @@
     </member>
     <member name="T:Microsoft.Expression.Encoder.JobBase">
       <summary>
-            A job, which is a list of files and other properties
+            A job, which is a list of files and other properties.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.EncoderObject">
@@ -70,7 +70,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.JobBase.ApplyPreset(Microsoft.Expression.Encoder.Preset)">
       <summary>
-            Applies a preset to all the media items in the job
+            Applies a preset to all the media items in the job.
             </summary>
       <param name="fileName">The file name of the preset to apply.</param>
     </member>
@@ -159,41 +159,50 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.CancelEncode">
       <summary>
-            Cancel the current encode.
+            Cancels the current encode.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.PauseEncode">
       <summary>
-            Pause the current encode.
+            Pauses the current encode.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.ResumeEncode">
       <summary>
-            Resume the current encode.
+            Resumes the current encode.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.LoadJob(System.String)">
       <summary>
-            Create a new job from a job file.
+            Creates a new job from a job file.
             </summary>
       <param name="fileName">The file name to load the job from.</param>
       <returns>The created job.</returns>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.Job.LoadJob(System.String,System.Boolean,System.EventHandler{Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs})">
+      <summary>
+            Creates a new job from a job file.
+            </summary>
+      <param name="fileName">The file name to load the job from.</param>
+      <param name="indexWhileLoading">Specifies whether the file should be indexed while loading.</param>
+      <param name="progressDelegate">The event handler to be called when a file is being indexed.</param>
+      <returns>The created job.</returns>
+    </member>
     <member name="M:Microsoft.Expression.Encoder.Job.OnEncodeProgressRaised(Microsoft.Expression.Encoder.EncodeProgressEventArgs)">
       <summary>
-            Raise the encode progress event.
+            Raises the encode progress event.
             </summary>
       <param name="e">The encode progress event arguments</param>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.OnStartFileEncodingRaised(Microsoft.Expression.Encoder.StartFileEncodingEventArgs)">
       <summary>
-            Raise the start file encoding event.
+            Raises the start file encoding event.
             </summary>
       <param name="e">The start file name encoding event arguments.</param>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Job.OnEncodeCompletedRaised(Microsoft.Expression.Encoder.EncodeCompletedEventArgs)">
       <summary>
-            Raise the encode completed event.
+            Raises the encode completed event.
             </summary>
       <param name="e">The encode completed event arguments</param>
     </member>
@@ -205,9 +214,8 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Job.EnablePartialRebuild">
       <summary>
-            Gets or sets a value indicating whether partial rebuilding is enabled. 
-            If it is enabled, a job that has previously been encoded will regenerate only the parts of the output
-            that have changed if it is encoded again.
+            Gets or sets a value indicating whether partial rebuilding is enabled. If it is enabled, 
+            a job that has previously been encoded will re-encode only the parts of the output that have changed.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.EncodeProgressEventArgs">
@@ -220,10 +228,21 @@
             Initializes a new instance of the EncodeProgressEventArgs class.
             </summary>
       <param name="item">The current media item that is being encoded.</param>
+      <param name="currentPosition">The current position within the file that is being encoded.</param>
+      <param name="currentPass">The current pass of the encoding.</param>
+      <param name="totalPasses">The total number of passes to be performed.</param>
+      <param name="cancel">A value indicating whether the encode should be canceled.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.EncodeProgressEventArgs.#ctor(Microsoft.Expression.Encoder.MediaItem,System.TimeSpan,System.Int32,System.Int32,System.Boolean,Microsoft.Expression.Encoder.StreamEncodeType[])">
+      <summary>
+            Initializes a new instance of the EncodeProgressEventArgs class.
+            </summary>
+      <param name="item">The current media item that is being encoded.</param>
       <param name="currentPosition">The current position within the file that is being encoded</param>
       <param name="currentPass">The current pass of the encoding.</param>
       <param name="totalPasses">The total number of passes to be performed.</param>
       <param name="cancel">A value indicating whether the encode should be canceled.</param>
+      <param name="streamEncodeTypes">The type of each stream</param>
     </member>
     <member name="P:Microsoft.Expression.Encoder.EncodeProgressEventArgs.Progress">
       <summary>
@@ -254,6 +273,40 @@
     <member name="P:Microsoft.Expression.Encoder.EncodeProgressEventArgs.Cancel">
       <summary>
             Gets or sets a value indicating whether the encode should be canceled.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.EncodeProgressEventArgs.StreamEncodeTypes">
+      <summary>
+            Gets the current encode stream types that are being used to encode the video streams.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs">
+      <summary>
+            Index progress while loading a Job
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs.#ctor(System.Int32,System.Int32,System.String,System.Double)">
+      <summary>
+            Initializes a new instance of the MultiFileIndexProgressEventArgs class.
+            </summary>
+      <param name="fileIndex">The index of the file being indexed.</param>
+      <param name="totalFiles">The total number of files</param>
+      <param name="strFile">The current file name</param>
+      <param name="dblProgress">The current progress (0 to 1)</param>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs.Filename">
+      <summary>
+            Gets the current file name that is being indexed.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs.FileIndex">
+      <summary>
+            Gets the index of the current file.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.MultiFileIndexProgressEventArgs.TotalFiles">
+      <summary>
+            Gets the total number of files.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.StartFileEncodingEventArgs">
@@ -408,7 +461,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.AsfIndexer.IndexFile(System.String)">
       <summary>
-            Index an ASF file.
+            Indexes an ASF file.
             </summary>
       <param name="fileName">The file name to be indexed.</param>
     </member>
@@ -448,6 +501,24 @@
             </summary>
       <param name="message">The error message that explains the reason for the exception.</param>
       <param name="args">The list of arguments.</param>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.IDfxpConverterContract">
+      <summary>
+            Implements a converter from a particular captioning format to DFXP.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.IDfxpConverterContract.Convert(System.String,System.String,System.Globalization.CultureInfo)">
+      <summary>
+            Converts a caption file of this type to a valid Dfxp output file.
+            </summary>
+      <param name="sourceFile">The caption file of this type to convert.</param>
+      <param name="destinationDfxpFile">The output Dfxp file to be created.</param>
+      <param name="culture">The target language of the resultant Dfxp file.</param>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.IDfxpConverterContract.Extensions">
+      <summary>
+            Gets the array of extensions supported by this captioning converter.
+            </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Clip">
       <summary>
@@ -592,17 +663,17 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.CaptionFileType.Captions">
       <summary>
-            Closed captions - dialog in the same language.
+            Closed captions. The dialog is in the same language.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.CaptionFileType.Subtitles">
       <summary>
-            Subtitles - dialog in an alternate language.
+            Subtitles. The dialog is in an alternate language.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.CaptionFileType.Descriptive">
       <summary>
-            Descriptive - description text.
+            Descriptive. The text consists of descriptions.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.CaptionFile">
@@ -636,6 +707,11 @@
             Gets or sets the offset to apply to all caption times.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.CaptionFile.Label">
+      <summary>
+            Gets or sets the offset to apply to all caption times.
+            </summary>
+    </member>
     <member name="P:Microsoft.Expression.Encoder.CaptionFile.FileName">
       <summary>
             Gets or sets the file name of the source caption file.
@@ -646,156 +722,291 @@
             Class used to hold a collection of caption files.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults">
+    <member name="T:Microsoft.Expression.Encoder.Devices.EncoderDeviceCategory">
       <summary>
-            The results of a device list query to the system. This class contains all of the Added and Removed
-            devices since the last time QueryForDeviceChanges was called.
+            Specifies the category of this device. Most devices are capture devices, however some,
+            like external speakers, are playback devices.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.#ctor">
+    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceCategory.Capture">
       <summary>
-            Initializes a new instance of the EncoderDeviceResults class.
+            A capture device.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.Added">
+    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceCategory.Playback">
       <summary>
-            Gets the list of devices that have been added to the system.
+            A playback device.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.Removed">
+    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceCategory.Unknown">
       <summary>
-            Gets the list of devices that have been removed from the system.
+            Unknown category of device.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.Devices.EncoderDeviceType">
+    <member name="T:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled">
       <summary>
-            An enumeration of device types that can be queried for.
+            The reason the H264 GPU encoding device is disabled.
             </summary>
     </member>
-    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceType.Audio">
+    <member name="F:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled.None">
       <summary>
-            An audio device.
+            The device is not disabled.
             </summary>
     </member>
-    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceType.Video">
+    <member name="F:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled.WrongSku">
       <summary>
-            A video device.
+            The Encoder Pro SKU is not being run.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.Drm">
+    <member name="F:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled.WrongDeviceVersion">
       <summary>
-            Class used to indicate the DRM parameters.
+            The hardware device version is wrong.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.Drm.#ctor">
+    <member name="F:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled.MissingDevice">
       <summary>
-            Initalizes a new instance of the Drm class.
+            No GPU device is installed.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.Drm.Clone">
+    <member name="F:Microsoft.Expression.Encoder.H264EncodeDeviceDisabled.InvalidCudaDriverVersion">
       <summary>
-            Makes a deep copy of the DRM object.
-            </summary>
-      <returns>The copied object.</returns>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Drm.KeyId">
-      <summary>
-            Gets or sets the key ID to use
+            Invalid Cuda driver version.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.Drm.KeySeed">
+    <member name="T:Microsoft.Expression.Encoder.H264DeviceType">
       <summary>
-            Gets or sets a string encoded in base 64 that is used to specify the key seed.
+            The type of H264 encoding device.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.Drm.LicenseAcquisitionUrl">
+    <member name="F:Microsoft.Expression.Encoder.H264DeviceType.Cuda">
       <summary>
-            Gets or sets the license acquisition URL.
+            The device supports Cuda.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException">
+    <member name="F:Microsoft.Expression.Encoder.H264DeviceType.IntelHDGraphics">
       <summary>
-            An audio screen capture exception.
+            The device supports Intel(R) HD Graphics.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException">
+    <member name="T:Microsoft.Expression.Encoder.H264EncodeDevice">
       <summary>
-            A screen capture exception.
+            The H264 encode device.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor">
+    <member name="M:Microsoft.Expression.Encoder.H264EncodeDevice.QueryIsDeviceAvaliable">
       <summary>
-            Initializes a new instance of the ScreenCaptureException class.
+            Gets a value indicating whether this device is available.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevice.Name">
+      <summary>
+            Gets the device name.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.String)">
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevice.CudaVersion">
       <summary>
-            Initializes a new instance of the ScreenCaptureException class with a specified error message.
-            </summary>
-      <param name="message">The error message that explains the reason for the exception.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.String,System.Exception)">
-      <summary>
-            Initializes a new instance of the ScreenCaptureException class with a specified error message and a reference to the inner exception that is the cause of this exception.
-            </summary>
-      <param name="message">The error message that explains the reason for the exception.</param>
-      <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>
-            Initializes a new instance of the ScreenCaptureException class with serialized data.
-            </summary>
-      <param name="info">The object that holds the serialized object data.</param>
-      <param name="context">The contextual information about the source or destination.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor">
-      <summary>
-            Initializes a new instance of the ScreenCaptureAudioException class.
+            Gets the Cuda version.
             </summary>
     </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.String)">
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevice.DeviceType">
       <summary>
-            Initializes a new instance of the ScreenCaptureAudioException class with a specified error message.
-            </summary>
-      <param name="message">The error message that explains the reason for the exception.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.String,System.Exception)">
-      <summary>
-            Initializes a new instance of the ScreenCaptureAudioException class with a specified error message and a reference to the inner exception that is the cause of this exception.
-            </summary>
-      <param name="message">The error message that explains the reason for the exception.</param>
-      <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>
-            Initializes a new instance of the ScreenCaptureAudioException class with serialized data.
-            </summary>
-      <param name="info">The object that holds the serialized object data.</param>
-      <param name="context">The contextual information about the source or destination.</param>
-    </member>
-    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics">
-      <summary>
-            The statistics of the current screen capture session
+            Gets the type of device.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.FrameCount">
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevice.Enabled">
       <summary>
-            Gets the total frames captured since capture start.
+            Gets or sets a value indicating whether the device is enabled.
+            At least one device must be enabled.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.Size">
+    <member name="T:Microsoft.Expression.Encoder.H264EncodeDevices">
       <summary>
-            Gets the total output since start since capture start (in bytes).
+            Control settings for H264 encoders.
             </summary>
     </member>
-    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.Duration">
+    <member name="M:Microsoft.Expression.Encoder.H264EncodeDevices.Recalculate">
       <summary>
-            Gets the duration since capture start.
+            Recalculate the availability of devices.  All settings will revert back to their defaults.
             </summary>
     </member>
-    <member name="T:Microsoft.Expression.Encoder.Profiles.ScreenCaptureVideoProfile">
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevices.EnableGpuEncoding">
       <summary>
-            The video profiles used for screen capture
+            Gets or sets a value indicating whether GPU encoding is enabled.  Requires Encoder Pro version and at least 1 device.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevices.MaxNumberGPUStream">
+      <summary>
+            Gets or sets the maximum number of Cuda streams to use.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevices.MaxNumberIntelHDGraphicsStream">
+      <summary>
+            Gets or sets the maximum number of Intel(R) HD Graphics streams to use.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevices.Devices">
+      <summary>
+            Gets the list of devices.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.H264EncodeDevices.DisabledReason">
+      <summary>
+            Gets the reason H264 HW encoding is disabled.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties">
+      <summary>
+            This class defines the properties for screen capture source.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.#ctor">
+      <summary>
+            Initializes a new instance of the ScreenCaptureSourceProperties class.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureSourceProperties class.
+            </summary>
+      <param name="left">X of topleft location of the capture rectangle.</param>
+      <param name="top">Y of topleft location of the capture rectangle.</param>
+      <param name="width">Width of the capture rectangle.</param>
+      <param name="height">Height of the capture rectangle.</param>
+      <param name="frameRate">Frame rate of the screen capture.</param>
+      <param name="captureCursor">Captures mouse cursor.</param>
+      <param name="captureLargeCursor">Captures enlarged mouse cursor.</param>
+      <param name="captureLayeredWindow">Captures layered window.</param>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.Left">
+      <summary>
+            Gets or sets X of topleft location of the capture rectangle.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.Top">
+      <summary>
+            Gets or sets Y of topleft location of the capture rectangle.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.Width">
+      <summary>
+            Gets or sets the width of the capture rectangle. The maximum width is 2560.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.Height">
+      <summary>
+            Gets or sets the height of the capture rectangle. The maximum height is 2560.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.FrameRate">
+      <summary>
+            Gets or sets the frame rate of the screen capture.  Frame rate must be between 1 to 30 fps. 
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.CaptureCursor">
+      <summary>
+            Gets or sets a value indicating whether the source captures mouse cursor at original size.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.CaptureLargeCursor">
+      <summary>
+            Gets or sets a value indicating whether the mouse cursor is captured at 3x size.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.ScreenCaptureSourceProperties.CaptureLayeredWindow">
+      <summary>
+            Gets or sets a value indicating whether the source captures layered window.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Live.VideoConnectorType">
+      <summary>
+            An enumeration of all the possible video line types.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Unknown">
+      <summary>
+            Unknown video line type.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Tuner">
+      <summary>
+            TV tuner.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Composite">
+      <summary>
+            Composite video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.SVideo">
+      <summary>
+            S-Video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Rgb">
+      <summary>
+            RGB video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Yryby">
+      <summary>
+            Component video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.SerialDigital">
+      <summary>
+            Serial digital video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.ParallelDigital">
+      <summary>
+            Parallel digital video.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Scsi">
+      <summary>
+            SCSI line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Aux">
+      <summary>
+            Aux line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Line1394">
+      <summary>
+            Firewire line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Usb">
+      <summary>
+            USB line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.VideoDecoder">
+      <summary>
+            Video decoder line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.VideoEncoder">
+      <summary>
+            Video encoder line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.SCart">
+      <summary>
+            SCART line.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.VideoConnectorType.Black">
+      <summary>
+            Black line.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Profiles.H264PassThroughProfile">
+      <summary>
+            H.264 passthrough profile used on the DecoderSpecificInfo.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.VideoProfile">
@@ -914,13 +1125,13 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.VideoProfile.SmoothStreaming">
       <summary>
-            Gets or sets a value indicating whether the profile uses smooth streaming.
+            Gets or sets a value indicating whether the profile uses IIS Smooth Streaming.
             Note that if you're using VC-1, setting this property to true will cause the following properties to be set as follows:
             ClosedGop to true, AdaptiveGop to false, and OutputMode to
             ElementaryStreamSequenceHeader. When you are using Smooth Streaming, the bitrate of the streams must be
             either all ConstantBitrate or all VariableConstrainedBitrate.
             </summary>
-      <remarks>Note that when you are using smooth streaming with a VariableConstrainedBitrate the following properties are ignored, 
+      <remarks>Note that when you are using IIS Smooth Streaming with a VariableConstrainedBitrate the following properties are ignored 
             because they are set automatically during encoding:
             AdaptiveDeadZone, BFrameCount, Complexity, DenoiseFilter, DifferentialQuantization, InLoopFilter, 
             MotionChromaSearch, MotionMatchMethod, MotionSearchRange, NoiseEdgeRemovalFilter, and OverlapSmoothingFilter.
@@ -937,6 +1148,184 @@
             Get the video codec type
             </summary>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.H264PassThroughProfile.Clone">
+      <summary>
+            Makes a deep copy of the video profile object.
+            </summary>
+      <returns>The copied object.</returns>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.H264PassThroughProfile.StreamCopyOnly">
+      <summary>
+            Only supports stream copy.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.H264PassThroughProfile.Codec">
+      <summary>
+            Gets the codec type.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults">
+      <summary>
+            The results of a device list query to the system. This class contains all of the added and removed
+            devices since the last time QueryForDeviceChanges was called.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.#ctor">
+      <summary>
+            Initializes a new instance of the EncoderDeviceResults class.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.Added">
+      <summary>
+            Gets the list of devices that have been added to the system.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Devices.EncoderDeviceResults.Removed">
+      <summary>
+            Gets the list of devices that have been removed from the system.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Devices.EncoderDeviceType">
+      <summary>
+            An enumeration of device types that can be queried for.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceType.Audio">
+      <summary>
+            An audio device.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Devices.EncoderDeviceType.Video">
+      <summary>
+            A video device.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Drm">
+      <summary>
+            Class used to indicate the DRM parameters.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Drm.#ctor">
+      <summary>
+            Initalizes a new instance of the Drm class.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Drm.Clone">
+      <summary>
+            Makes a deep copy of the DRM object.
+            </summary>
+      <returns>The copied object.</returns>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Drm.KeyId">
+      <summary>
+            Gets or sets the key ID to use
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Drm.KeySeed">
+      <summary>
+            Gets or sets a string encoded in base 64 that is used to specify the key seed.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Drm.ContentKey">
+      <summary>
+            Gets or sets a string encoded in base 64 that is used to specify the content key.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Drm.LicenseAcquisitionUrl">
+      <summary>
+            Gets or sets the license acquisition URL.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException">
+      <summary>
+            An audio screen capture exception.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException">
+      <summary>
+            A screen capture exception.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor">
+      <summary>
+            Initializes a new instance of the ScreenCaptureException class.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureException class with a specified error message.
+            </summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureException class with serialized data.
+            </summary>
+      <param name="info">The object that holds the serialized object data.</param>
+      <param name="context">The contextual information about the source or destination.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor">
+      <summary>
+            Initializes a new instance of the ScreenCaptureAudioException class.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureAudioException class with a specified error message.
+            </summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureAudioException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureAudioException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureAudioException class with serialized data.
+            </summary>
+      <param name="info">The object that holds the serialized object data.</param>
+      <param name="context">The contextual information about the source or destination.</param>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics">
+      <summary>
+            The statistics of the current screen capture session.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.FrameCount">
+      <summary>
+            Gets the total frames captured since capture start.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.SizeAsLong">
+      <summary>
+            Gets the total output since start since capture start (in bytes).
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.Size">
+      <summary>
+            Gets the total output since start since capture start (in bytes).
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatistics.Duration">
+      <summary>
+            Gets the duration since capture start.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Profiles.ScreenCaptureVideoProfile">
+      <summary>
+            The video profile used for screen capture.
+            </summary>
+    </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.ScreenCaptureVideoProfile.Clone">
       <summary>
             Makes a deep copy of the video profile object.
@@ -945,7 +1334,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.ScreenCaptureVideoProfile.Quality">
       <summary>
-            Gets and sets the quality of frames of screen capture: 1 is the worst and 100 is the best.
+            Gets and sets the quality of frames of screen capture; 1 is the worst and 100 is the best.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.ScreenCaptureVideoProfile.KeyFrameDistance">
@@ -995,21 +1384,21 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.RectangleSelectionUtilities.GetWindowRect(System.IntPtr)">
       <summary>
-            Gets the rectangle of a specific window.
+            Gets the capture area of a specific window.
             </summary>
       <param name="window">The hwnd of the window.</param>
       <returns>The rectangle of the window.</returns>
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.RectangleSelectionUtilities.GetWindowRectByTitle(System.String)">
       <summary>
-            Gets the rectangle of a specific window by title.
+            Gets the capture area of a specific window by title.
             </summary>
       <param name="title">The title of the window.</param>
       <returns>A rectangle with height and width equal to 0 when the window is not found.</returns>
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.RectangleSelectionUtilities.GetScreenRect(System.Int32)">
       <summary>
-            Gets the rectangle of a monitor.
+            Gets the capture area of the full screen.
             </summary>
       <param name="index">0 for whole virtual screen, greater than 0 for the selected monitor number.</param>
     </member>
@@ -1024,6 +1413,13 @@
             </summary>
       <param name="message">The message type.</param>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventArgs.#ctor(Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType,System.String)">
+      <summary>
+            Initializes a new instance of the ScreenCaptureEventArgs class.
+            </summary>
+      <param name="message">The message type.</param>
+      <param name="verboseMessage">The verbose message.</param>
+    </member>
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventArgs.Message">
       <summary>
             Gets the message type.
@@ -1036,7 +1432,7 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType.Normal">
       <summary>
-            No Error
+            No error.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType.OfficeIrm">
@@ -1056,12 +1452,17 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType.SkuLimit">
       <summary>
-            Time limit for Standard SKU.
+            Time limit for Encoder standard version SKU.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType.NoDisplayDevice">
       <summary>
             All display devices are disabled or virtual.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureEventType.Others">
+      <summary>
+            Others.  
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob">
@@ -1071,12 +1472,12 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.#ctor">
       <summary>
-            Initializes a new instance of the ScreenScreenCaptureJob class.
+            Initializes a new instance of the ScreenCaptureJob class.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.Finalize">
       <summary>
-            Disposes a screen capture job.
+            Finalizes an instance of the ScreenCaptureJob class.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.AddAudioDeviceSource(Microsoft.Expression.Encoder.Devices.EncoderDevice)">
@@ -1139,14 +1540,14 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureRectangle">
       <summary>
-            Gets or sets the screen recording rectangle.
+            Gets or sets the capture area.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.ScreenCaptureAudioProfile">
       <summary>
             Gets or sets the audio profile of audio capture. 
             The bitrate must match the following:
-            1 pass CBR settings. 
+            1-pass CBR settings. 
             Bits Per Sample: 16.
             Codec: WMA.
             </summary>
@@ -1160,7 +1561,7 @@
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.ScreenCaptureVideoProfile">
       <summary>
             Gets or sets the video profile of screen capture. 
-            The bitrate must use a 1 pass CBR settings.
+            The bitrate must use a 1-pass CBR settings.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.AudioDeviceSources">
@@ -1188,6 +1589,27 @@
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureMouseCursor">
       <summary>
             Gets or sets a value indicating whether mouse movements are recorded in the video.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureLargeMouseCursor">
+      <summary>
+            Gets or sets a value indicating whether enlarged mouse movements are recorded in the video.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureLayeredWindow">
+      <summary>
+            Gets or sets a value indicating whether layered windows are captured.
+            When Aero is enabled, the value is ignored as layered windows will always be captured.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureFollowCursor">
+      <summary>
+            Gets or sets a value indicating whether the capture window follows the mouse cursor.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.CaptureFollowLocation">
+      <summary>
+            Gets the current capture rectangle when the capture window is following the mouse cursor.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.OutputPath">
@@ -1237,6 +1659,12 @@
     <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.Duration">
       <summary>
             Gets or sets the duration of screen capture after calling Start().  It can't be less than 2 seconds.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureJob.IsZoomSupported">
+      <summary>
+            Gets a value indicating whether the zoom capability is supported.
+            Zoom is not supported on Windows XP, 64bit Windows Vista/7.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.ScreenCapture.ScreenCaptureStatusEventArgs">
@@ -1289,12 +1717,12 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.WebcamErrorType.DeviceLost">
       <summary>
-            Capture device lost, in other words, the webcam is unplugged.
+            Capture device lost or is unplugged.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.WebcamErrorType.IOError">
       <summary>
-            Input-Output error, in other words, the disk is full, the disk has been removed, or the  remote folder failed.
+            Input-Output error. The disk is full, the disk has been removed, or the remote folder failed.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.ScreenCapture.WebcamErrorType.OtherError">
@@ -1382,7 +1810,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.MediaFile.Create(System.String)">
       <summary>
-            Create a source from a file name.
+            Creates a MediaFile from a file name.
             </summary>
       <param name="fileName">The file name.</param>
       <returns>The created MediaFile class.</returns>
@@ -1560,6 +1988,20 @@
       <returns>
       </returns>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.AudioVideoFile.CalculateBestThumbnailTime">
+      <summary>
+            Calculate the best thumbnail time for the file.
+            </summary>
+      <returns>The calculated time.</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.AudioVideoFile.CalculateBestThumbnailTime(System.TimeSpan,System.TimeSpan)">
+      <summary>
+            Calculate the best thumbnail time for a range within the file.
+            </summary>
+      <param name="startTime">The start time of the range.</param>
+      <param name="endTime">The end time of the range.</param>
+      <returns>The calculated time.</returns>
+    </member>
     <member name="M:Microsoft.Expression.Encoder.AudioVideoFile.CalculateDuration(System.EventHandler{Microsoft.Expression.Encoder.IndexProgressEventArgs})">
       <summary>
             Calculate the duration of a file by going through and creating an index of the file.
@@ -1680,6 +2122,12 @@
             the flags that were set by the caller, and set any additional flags as appropriate. 
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.AcquireCredentialsEventArgs.RememberPassword">
+      <summary>
+            Gets or sets a flag that the application can use to indicate that the caller
+            should save the credentials in a persistent manner.  
+            </summary>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Live.EncodeStatus">
       <summary>
             This class holds information for encoding status.
@@ -1713,7 +2161,7 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.PipelineRebuildFinished">
       <summary>
-            The underlying encoding engine has finished rebuilding it's media pipeline.
+            The underlying encoding engine has finished rebuilding its media pipeline.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.AnalyzingFile">
@@ -1723,8 +2171,7 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.Jumped">
       <summary>
-            The encoder has jumped to a new source. The sender of this event will
-            be the source that is jumped to.
+            The encoder has jumped to a new source, which will be the sender of this event.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.Looped">
@@ -1735,18 +2182,22 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.Hold">
       <summary>
-            The encoder is holding the current source. The sender of this event will
-            be the source that is held.
+            The encoder is holding the current source, which is the sender of this event.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.EncodingError">
       <summary>
-            An error occurred while encoding and the current job will be stopped.
+            An error occurred while encoding. The current job will be stopped.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.StreamingStarted">
       <summary>
             Streaming to a publishing point has started.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Live.EncodeStatus.FileArchiveStarted">
+      <summary>
+            Archiving to a file has started.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Live.EncodeStatusEventArgs">
@@ -1761,14 +2212,14 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.EncodeStatusEventArgs.Message">
       <summary>
-            Gets a message related to this status, if one exists.
+            Gets any existing message related to this status.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.EncodeStatusEventArgs.LiveSource">
       <summary>
             Gets the device that sent this message. If this status
             message is related to jumping, looping, or holding a device,
-            this parameter is the device that performed the action.
+            this parameter lists the device that performed the action.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Live.FileArchivePublishFormat">
@@ -1795,6 +2246,12 @@
     <member name="P:Microsoft.Expression.Encoder.Live.FileArchivePublishFormat.OutputFileName">
       <summary>
             Gets or sets the file name that is being published to, if publishing to a file archive.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.FileArchivePublishFormat.EncryptArchive">
+      <summary>
+            Gets or sets a value indicating whether Smooth Streaming DRM is written into the archive file.
+            This is ignored if DRM is not set on the job.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Live.PreviewWindow">
@@ -1863,6 +2320,13 @@
             distinguish between two or more instances of the same type of device on a system.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.Devices.EncoderDevice.Category">
+      <summary>
+            Gets the capture category of this device. Most devices are capture devices, however some devices,
+            such as speakers, are playback devices. Live jobs only supports capture devices, while ScreenCapture 
+            jobs support both playback and capture devices.
+            </summary>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Live.LiveDeviceSource">
       <summary>
             This class represents an audio and/or video device that is
@@ -1906,9 +2370,14 @@
             Gets or sets the resize mode of this source.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.LiveSource.CropRect">
+      <summary>
+            Gets or sets the crop rectangle of this source.
+            </summary>
+    </member>
     <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.SourcePropertiesSnapshot">
       <summary>
-            Gets properties describing this source, including things like frame rate, resolution, and so on.
+            Gets properties describing this source, including things like frame rate, resolution, etc.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.PickBestVideoFormat(System.Drawing.Size,System.Int64)">
@@ -1944,6 +2413,64 @@
             </summary>
       <param name="mode">The new transport mode.</param>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetAudioInputVolume">
+      <summary>
+            Gets a value indicating the audio volume on the current audio line. 
+            </summary>
+      <returns>The volume of the current audio line from 0.0-1.0</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetAudioInputMixLevel(System.Int32)">
+      <summary>
+            Gets the current mix level for the given audio line.
+            </summary>
+      <param name="audioLine">The audio line to query</param>
+      <returns>The level of the given line, from 0.0 - 1.0</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.SetAudioInputMixLevel(System.Int32,System.Double)">
+      <summary>
+            Sets the mix level of the given audio line.
+            </summary>
+      <param name="audioLine">The audio line to set</param>
+      <param name="mixLevel">The mix level for this audio line, from 0.0 - 1.0</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.EnableInputAudioLine(System.Int32)">
+      <summary>
+            Sets the current audio input line.
+            </summary>
+      <param name="audioLineIndex">The audio line to make active</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetAudioLineName(System.Int32)">
+      <summary>
+            Gets the name of the audio line at the given index.
+            </summary>
+      <param name="audioLineIndex">The audio line to query</param>
+      <returns>The name of this audio line</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetActiveAudioLine">
+      <summary>
+            Gets the currently selected audio line.
+            </summary>
+      <returns>The index of the current audio line</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.EnableInputVideoLine(System.Int32)">
+      <summary>
+            Enables the given video input line.
+            </summary>
+      <param name="videoLineIndex">The index of the video line to select</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetActiveVideoLine">
+      <summary>
+            Gets the index of the active video line.
+            </summary>
+      <returns>The index of the active video line</returns>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveDeviceSource.GetVideoLineType(System.Int32)">
+      <summary>
+            Gets the video line type for the given video line index.
+            </summary>
+      <param name="videoLineIndex">The index of the line to query.</param>
+      <returns>The video line type.</returns>
+    </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.VideoDevice">
       <summary>
             Gets or sets the video device used in this source.
@@ -1952,6 +2479,12 @@
     <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.AudioDevice">
       <summary>
             Gets or sets the audio device used in this source.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.ScreenCaptureSourceProperties">
+      <summary>
+            Gets or sets the properties for screen capture source.
+            returns null when the video device is not a screen capture source
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.PreviewWindow">
@@ -1964,6 +2497,16 @@
             Gets a value indicating whether this source supports DV and VCR-type transport controls.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.NumberOfInputAudioLines">
+      <summary>
+            Gets a value indicating the number of audio lines in this source.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.LiveDeviceSource.NumberOfInputVideoLines">
+      <summary>
+            Gets the number of input video lines.
+            </summary>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Live.LiveFileSource">
       <summary>
             This class represents a file that is used as a source in the
@@ -1972,7 +2515,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Live.LiveFileSource.SourcePropertiesSnapshot">
       <summary>
-            Gets properties describing this source, including things like frame rate, resolution, and so on.
+            Gets properties describing this source, including things like frame rate, resolution, etc.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveFileSource.Name">
@@ -2038,7 +2581,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.PullBroadcastPublishFormat.BroadcastPort">
       <summary>
-            The port to broadcast on.
+            The port on which to broadcast.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.PullBroadcastPublishFormat.MaximumNumberOfConnections">
@@ -2067,9 +2610,14 @@
             not persisted in the job file for privacy reasons.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.PushBroadcastPublishFormat.EventId">
+      <summary>
+            Get or sets the Smooth Streaming EventID.  Ignored if windows media publishing point
+            </summary>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Live.ScriptCommand">
       <summary>
-            Represents an on-demand script command in Live Encoding.
+            Represents an on-demand script in a live broadcasting project.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Live.ScriptCommand.#ctor(System.String,System.String)">
@@ -2309,7 +2857,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Preset.FindPreset(System.String)">
       <summary>
-            Searches system presets for matching, based on exact name, and using the current locale.
+            Searches system presets for matching, based on exact name or Id, and using the current locale.
             </summary>
       <param name="name">Name to search for.</param>
       <returns>A preset object with a name that matches the search.</returns>
@@ -2321,137 +2869,141 @@
             Returns matching system presets based on the search predicate.
             </summary>
       <param name="predicate">Lambda search expression.</param>
-      <returns>
-      </returns>
+      <returns>The found preset.</returns>
       <exception cref="T:System.ArgumentNullException">Thrown if the profile cannot be found.</exception>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Preset.FromFile(System.String)">
       <summary>
-            Load a preset from a file.
+            Loads a preset from a file.
             </summary>
-      <param name="strFilePath">Path of the preset file.</param>
+      <param name="filePath">Path of the preset file.</param>
       <returns>A preset object.</returns>
       <exception cref="T:System.ArgumentNullException">Thrown if the profile cannot be found.</exception>
       <exception cref="T:System.ArgumentException">Thrown if the parameter contains a path that does not resolve to a valid file.</exception>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.IsWebVideo">
       <summary>
-            Indicates if a system encoding-preset targets web video rather than devices.
+            Gets a value indicating whether the preset targets web video rather than devices.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Preset.Id">
+      <summary>
+            Gets the locale independent Id of the preset.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.Name">
       <summary>
-            The name of the preset.
+            Gets the name of the preset.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.Path">
       <summary>
-            The path of the preset file.
+            Gets the path of the preset file.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.IsSystem">
       <summary>
-            Indicates whether this preset instance is a system preset.
+            Gets a value indicating whether this preset is a system preset.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.IsPrx">
       <summary>
-            Indicates whether this preset is a PRX profile.
+            Gets a value indicating whether this preset is a PRX profile.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.IsLivePreset">
       <summary>
-            Indicates whether this preset is a Live-only preset.
+            Gets a value indicating whether this preset is a Live-only preset.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.Description">
       <summary>
-            Returns a string describing the contents.
+            Gets a string describing the contents.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.IsSmoothStreaming">
       <summary>
-            A flag indicating whether the preset uses IIS Smooth Streaming.
+            Gets a value indicating whether the preset uses IIS Smooth Streaming.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.HasAudioProfile">
       <summary>
-            A flag indicating whether the preset has audio profile information.
+            Gets a value indicating whether the preset has audio profile information.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.HasAudioSourceProfile">
       <summary>
-            A flag indicating whether the preset uses a source profile for the audio profile.
+            Gets a value indicating whether the preset uses a source profile for the audio profile.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.HasVideoProfile">
       <summary>
-            A flag indicating whether the preset has video profile information.
+            Gets a value indicating whether the preset has video profile information.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.HasVideoSourceProfile">
       <summary>
-            A flag indicating whether the preset uses a source profile for the video profile.
+            Gets a value indicating whether the preset uses a source profile for the video profile.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.VideoCodec">
       <summary>
-            For presets containing a video profile, returns the video codec.
+            Gets the video codec for presets containing a video profile.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.AudioCodec">
       <summary>
-            For presets containing an audio profile, returns the audio codec.
+            Gets the audio codec for presets containing an audio profile.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.SystemPresets">
       <summary>
-            Enumerates all system presets.
+            Gets a list of all the system presets.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Preset.SystemLivePresets">
       <summary>
-            Enumerates all system Live presets.
+            Gets a list of all the system Live presets.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1256kDSL4x3">
       <summary>
-            Returns the preset "VC-1 256k DSL," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 240. Video Bitrate: 150 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 32 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 256k DSL" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 240. Video Bitrate: 150 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 32 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1256kDSL16x9">
       <summary>
-            Returns the preset "VC-1 256k DSL," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 180. Video Bitrate: 150 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 32 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 256k DSL" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 180. Video Bitrate: 150 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 32 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1512kDSL16x9">
       <summary>
-            Returns the preset "VC-1 512k DSL," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 180. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 512k DSL" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 180. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1512kDSL4x3">
       <summary>
-            Returns the preset "VC-1 512k DSL," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 240. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 512k DSL" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 320, 240. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1Broadband16x9">
       <summary>
-            Returns the preset "VC-1 Broadband," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 512, 288. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Broadband" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 512, 288. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1Broadband4x3">
       <summary>
-            Returns the preset "VC-1 Broadband," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 512, 384. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Broadband" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 512, 384. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1HighSpeedBroadband4x3">
       <summary>
-            Returns the preset "VC-1 High Speed Broadband," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 640, 480. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 High Speed Broadband" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 640, 480. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA Audio. Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1HighSpeedBroadband16x9">
       <summary>
-            Returns the preset "VC-1 High Speed Broadband," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 640, 360. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 High Speed Broadband" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: 640, 360. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreamingLowBandwidthStandard">
@@ -2461,12 +3013,12 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreaming480pStandard">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 IIS Smooth Streaming SD 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreaming720pStandard">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 IIS Smooth Streaming HD 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreamingLowBandwidthWidescreen">
@@ -2476,12 +3028,22 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreaming480pWidescreen">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 IIS Smooth Streaming SD 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreaming720pWidescreen">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 IIS Smooth Streaming HD 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreamingWP7Standard">
+      <summary>
+            Returns the preset "VC-1 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: 400, 300. Video Bitrate: 810 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 2. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.LivePresets.VC1IISSmoothStreamingWP7Widescreen">
+      <summary>
+            Returns the preset "VC-1 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec VC-1 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: 400, 224. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 2. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreamingLowBandwidthStandard">
@@ -2491,12 +3053,12 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreaming480pStandard">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming SD 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreaming720pStandard">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming HD 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreamingiPhoneCellStandard">
@@ -2531,12 +3093,12 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreaming480pWidescreen">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming SD 480p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreaming720pWidescreen">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming HD 720p" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreamingiPhoneCellWidescreen">
@@ -2564,19 +3126,29 @@
             Returns the preset "H.264 IIS Smooth Streaming Symbian" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: Auto, 320. Video Bitrate: 1024 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
+    <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreamingWP7Standard">
+      <summary>
+            Returns the preset "H.264 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: 400, 300. Video Bitrate: 810 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: 2. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.LivePresets.H264IISSmoothStreamingWP7Widescreen">
+      <summary>
+            Returns the preset "H.264 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: H264 Advanced Profile. Streams: 3. Stream auto-sizing: No. Video size: 400, 224. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: 2. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.AACGoodQualityAudio">
       <summary>
-            Returns the preset "AAC Good Quality Audio," and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "AAC Good Quality Audio" and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.AACHighQualityAudio">
       <summary>
-            Returns the preset "AAC High Quality Audio," and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "AAC High Quality Audio" and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.AACLowQualityAudio">
       <summary>
-            Returns the preset "AAC Low Quality Audio," and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "AAC Low Quality Audio" and applies the settings that follow. Output Format: MP4. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.Balanced">
@@ -2601,182 +3173,192 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264256kDSLCBR">
       <summary>
-            Returns the preset "H.264 256k DSL CBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 180. Video Bitrate: 192 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 256k DSL CBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 180. Video Bitrate: 192 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264256kDSLVBR">
       <summary>
-            Returns the preset "H.264 256k DSL VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 180. Video Bitrate: 192, 288 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 256k DSL VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 180. Video Bitrate: 192, 288 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264512kDSLCBR">
       <summary>
-            Returns the preset "H.264 512k DSL CBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 240. Video Bitrate: 404 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 512k DSL CBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 240. Video Bitrate: 404 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264512kDSLVBR">
       <summary>
-            Returns the preset "H.264 512k DSL VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 240. Video Bitrate: 404, 606 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 512k DSL VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 240. Video Bitrate: 404, 606 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264AppleTV">
       <summary>
-            Returns the preset "H.264 AppleTV," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, Auto. Video Bitrate: 5000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 AppleTV" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, Auto. Video Bitrate: 5000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISiPhoneWiFi">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming iPhone Wifi," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming iPhone Wifi" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISiPhoneCell">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming iPhone Cell,"  and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 200 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming iPhone Cell"  and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 200 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Presets.H264IISWP7">
+      <summary>
+            Returns the preset "H.264 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Streams 4. Video size: 800, 480. Video Bitrate: 1007 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISSymbian">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming Symbian," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming Symbian" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 480, 320. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264BroadbandCBR">
       <summary>
-            Returns the preset "H.264 Broadband CBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 384. Video Bitrate: 1045 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Broadband CBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 384. Video Bitrate: 1045 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264BroadbandVBR">
       <summary>
-            Returns the preset "H.264 Broadband VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 384. Video Bitrate: 1045, 1568 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Broadband VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 384. Video Bitrate: 1045, 1568 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264FacebookHD">
       <summary>
-            Returns the preset "H.264 Facebook HD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 2500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Facebook HD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 2500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264FacebookSD">
       <summary>
-            Returns the preset "H.264 Facebook SD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 608, 456. Video Bitrate: 1250 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Facebook SD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 608, 456. Video Bitrate: 1250 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264HD1080pVBR">
       <summary>
-            Returns the preset "H.264 HD 1080p VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 1080. Video Bitrate: 9515, 14273 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 HD 1080p VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 1080. Video Bitrate: 9515, 14273 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264HD720pVBR">
       <summary>
-            Returns the preset "H.264 HD 720p VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 720. Video Bitrate: 4018, 6027 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 HD 720p VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 720. Video Bitrate: 4018, 6027 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264HighSpeedBroadbandCBR">
       <summary>
-            Returns the preset "H.264 High Speed Broadband CBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 480. Video Bitrate: 1632 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 High Speed Broadband CBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 480. Video Bitrate: 1632 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264HighSpeedBroadbandVBR">
       <summary>
-            Returns the preset "H.264 High Speed Broadband VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 480. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 High Speed Broadband VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 480. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISSmoothStreaming480pCBR">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming - 480p CBR," and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 480. Video Bitrate: 1644 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming - SD 480p CBR" and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 480. Video Bitrate: 1644 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISSmoothStreaming720pCBR">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming - 720p CBR," and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 2962 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming - HD 720p CBR" and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 2962 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISSmoothStreamingHD1080pCBR">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming - 1080p CBR," and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 1080. Video Bitrate: 6000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming - 1080p CBR" and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 1080. Video Bitrate: 6000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264IISSmoothStreamingScreenEncodingCBR">
       <summary>
-            Returns the preset "H.264 IIS Smooth Streaming - Screen Encoding CBR," and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 1481 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 IIS Smooth Streaming - Screen Encoding CBR" and applies the settings that follow. Output Format: MP4. Container: Smooth Streaming. Video Codec: H.264 - Main Streams: 8 Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 1481 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264iPhoneiPodTouch">
       <summary>
-            Returns the preset "H.264 iPhone / iPod Touch," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 480, Auto. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 iPhone / iPod Touch" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 480, Auto. Video Bitrate: 1500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264SilverlightForSymbian">
       <summary>
-            Returns the preset "H.264 Silverlight for Symbian," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, 180. Video Bitrate: 384 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 56 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Silverlight for Symbian" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, 180. Video Bitrate: 384 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 56 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264SonyPSP">
       <summary>
-            Returns the preset "H.264 Sony PSP," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 480, 272. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Sony PSP" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 480, 272. Video Bitrate: 700 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264iPodClassicNano">
       <summary>
-            Returns the preset "H.264 iPod Classic / Nano," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, Auto. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 iPod Classic / Nano" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, Auto. Video Bitrate: 1000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264iPad">
       <summary>
-            Returns the preset "H.264 iPad," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 1280, 720. Video Bitrate: 4018 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 iPad" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 1280, 720. Video Bitrate: 4018 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264MotionThumbnailVBR">
       <summary>
-            Returns the preset "H.264 Motion Thumbnail VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 120. Video Bitrate: 110, 165 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Motion Thumbnail VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 120. Video Bitrate: 110, 165 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264ScreenEncodingVBR">
       <summary>
-            Returns the preset "H.264 Screen Encoding VBR," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 768. Video Bitrate: 1332, 4569 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Screen Encoding VBR" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: Auto, 768. Video Bitrate: 1332, 4569 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264VimeoHD">
       <summary>
-            Returns the preset "H.264 Vimeo HD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 5000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Vimeo HD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 5000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264VimeoSD">
       <summary>
-            Returns the preset "H.264 Vimeo SD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 640, 480. Video Bitrate: 2500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Vimeo SD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 640, 480. Video Bitrate: 2500 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264YouTubeHD">
       <summary>
-            Returns the preset "H.264 YouTube HD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 1995 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 YouTube HD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 1280, 720. Video Bitrate: 1995 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264YouTubeSD">
       <summary>
-            Returns the preset "H.264 YouTube SD," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 320, 240. Video Bitrate: 512 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 YouTube SD" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Main. Video size: 320, 240. Video Bitrate: 512 Kbps. Video Encoding: CBR SinglePass. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264Zune2">
       <summary>
-            Returns the preset "H.264 Zune 2," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, Auto. Video Bitrate: 1000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Zune 2" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 320, Auto. Video Bitrate: 1000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Presets.H264WP7">
+      <summary>
+            Returns the preset "H.264 Windows Phone 7" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 800, 480. Video Bitrate: 6000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264Zune2AVDockPlayback">
       <summary>
-            Returns the preset "H.264 Zune 2 (AV Dock Playback)," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 640, Auto. Video Bitrate: 2000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Zune 2 (AV Dock Playback)" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 640, Auto. Video Bitrate: 2000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264ZuneHD">
       <summary>
-            Returns the preset "H.264 Zune HD," and applies the settings that follow. Output Format: MP4. Video Codec: H.264 - Baseline. Video size: 480, Auto. Video Bitrate: 1500, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Zune HD" and applies the settings that follow. Output Format: MP4. Video Codec: H.264 - Baseline. Video size: 480, Auto. Video Bitrate: 1500, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.H264ZuneHDAVDockPlayback">
       <summary>
-            Returns the preset "H.264 Zune HD (AV Dock Playback)," and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 1280, Auto. Video Bitrate: 6100, 12000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "H.264 Zune HD (AV Dock Playback)" and applies the settings that follow. Output Format: MP4. Container: MP4. Video Codec: H.264 - Baseline. Video size: 1280, Auto. Video Bitrate: 6100, 12000 Kbps. Video Encoding: VBR Constrained. Audio Codec: AAC. Audio Channels: Stereo. Audio Bitrate: 192 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.SampleOverlay">
       <summary>
-            Returns the preset "Sample Overlay," and applies the setting that follows. Video Overlay: eeo.xaml.
+            Returns the preset "Sample Overlay" and applies the setting that follows. Video Overlay: eeo.xaml.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.SilverlightTrailer">
@@ -2786,162 +3368,172 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1256kDSLCBR">
       <summary>
-            Returns the preset "VC-1 256k DSL CBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 180. Video Bitrate: 192 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 256k DSL CBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 180. Video Bitrate: 192 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1256kDSLVBR">
       <summary>
-            Returns the preset "VC-1 256k DSL VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 180. Video Bitrate: 192, 288 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 48,72 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 256k DSL VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 180. Video Bitrate: 192, 288 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 48,72 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1512kDSLCBR">
       <summary>
-            Returns the preset "VC-1 512k DSL CBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 240. Video Bitrate: 404 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 512k DSL CBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 240. Video Bitrate: 404 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1512kDSLVBR">
       <summary>
-            Returns the preset "VC-1 512k DSL VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 240. Video Bitrate: 404, 606 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64,96 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 512k DSL VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 240. Video Bitrate: 404, 606 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64,96 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1BroadbandCBR">
       <summary>
-            Returns the preset "VC-1 Broadband CBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 384. Video Bitrate: 1045 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Broadband CBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 384. Video Bitrate: 1045 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1BroadbandVBR">
       <summary>
-            Returns the preset "VC-1 Broadband VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 384. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Broadband VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 384. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1HD1080pVBR">
       <summary>
-            Returns the preset "VC-1 HD 1080p VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 1080. Video Bitrate: 9515, 14273 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 384,576 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 HD 1080p VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 1080. Video Bitrate: 9515, 14273 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 384,576 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1HD720pVBR">
       <summary>
-            Returns the preset "VC-1 HD 720p VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 720. Video Bitrate: 4018, 6027 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 HD 720p VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 720. Video Bitrate: 4018, 6027 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1HighSpeedBroadbandCBR">
       <summary>
-            Returns the preset "VC-1 High Speed Broadband CBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 480. Video Bitrate: 1632 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 High Speed Broadband CBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 480. Video Bitrate: 1632 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1HighSpeedBroadbandVBR">
       <summary>
-            Returns the preset "VC-1 High Speed Broadband VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 480. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 High Speed Broadband VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 480. Video Bitrate: 1632, 2448 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISSmoothStreaming720pCBR">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming - 720p CBR," and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 2962 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 IIS Smooth Streaming - HD 720p CBR" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: No. Video size: Auto, 720. Video Bitrate: 2962 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISSmoothStreamingHD1080pVBR">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming - HD 1080p VBR," and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 13. Stream auto-sizing: Yes. Video size: Auto, 1080. Video Bitrate: 10000, 18000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 IIS Smooth Streaming - HD 1080p VBR" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 13. Stream auto-sizing: Yes. Video size: Auto, 1080. Video Bitrate: 10000, 18000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISSmoothStreamingHD720pVBR">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming - HD 720p VBR," and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 10. Stream auto-sizing: Yes. Video size: Auto, 720. Video Bitrate: 4000, 8000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 IIS Smooth Streaming - HD 720p VBR" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 10. Stream auto-sizing: Yes. Video size: Auto, 720. Video Bitrate: 4000, 8000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISSmoothStreamingScreenEncodingVBR">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming - Screen Encoding VBR," and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: Yes. Video size: Auto, Auto. Video Bitrate: 1000, 2940 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 IIS Smooth Streaming - Screen Encoding VBR" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: Yes. Video size: Auto, Auto. Video Bitrate: 1000, 2940 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISSmoothStreamingSD480pVBR">
       <summary>
-            Returns the preset "VC-1 IIS Smooth Streaming - SD 480p VBR," and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: Yes. Video size: Auto, 480. Video Bitrate: 1644, 2466 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 IIS Smooth Streaming - SD 480p VBR" and applies the settings that follow. Output Format: Windows Media. Container: Smooth Streaming. Video Codec: VC-1 Advanced Profile. Streams: 8. Stream auto-sizing: Yes. Video size: Auto, 480. Video Bitrate: 1644, 2466 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1MotionThumbnailVBR">
       <summary>
-            Returns the preset "VC-1 Motion Thumbnail VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 120. Video Bitrate: 110, 165 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 48,72 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Motion Thumbnail VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 120. Video Bitrate: 110, 165 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 48,72 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1ScreenEncodingVBR">
       <summary>
-            Returns the preset "VC-1 Screen Encoding VBR," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 768. Video Bitrate: 1332, 4569 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Screen Encoding VBR" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Advanced Profile. Video size: Auto, 768. Video Bitrate: 1332, 4569 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1WindowsMobile">
       <summary>
-            Returns the preset "VC-1 Windows Mobile," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Simple Profile. Video size: 240, Auto. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Mono. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Windows Mobile" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Simple Profile. Video size: 240, Auto. Video Bitrate: 350 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Mono. Audio Bitrate: 48 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Presets.VC1WP7">
+      <summary>
+            Returns the preset "VC-1 Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Simple Profile. Video size: 800, 480. Video Bitrate: 6000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: Mono. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1Xbox360HD1080p">
       <summary>
-            Returns the preset "VC-1 Xbox 360 HD 1080p," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1920, 1080. Video Bitrate: 8000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 384 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Xbox 360 HD 1080p" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1920, 1080. Video Bitrate: 8000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 384 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1Xbox360HD720p">
       <summary>
-            Returns the preset "VC-1 Xbox 360 HD 720p," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1280, 720. Video Bitrate: 6000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 384 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "VC-1 Xbox 360 HD 720p" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1280, 720. Video Bitrate: 6000 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 384 Kbps. Audio Encoding: CBR Single Pass.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Presets.VC1IISWP7">
+      <summary>
+            Returns the preset "VC-1 IIS Smooth Streaming Windows Phone 7" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 800, 480. Video Bitrate: 1406 Kbps. Video Encoding: CBR SinglePass. Audio Codec: WMA. Audio Channels: 2. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1Zune1">
       <summary>
-            Returns the preset "VC-1 Zune 1," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 320, Auto. Video Bitrate: 1000, 1500 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Zune 1" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 320, Auto. Video Bitrate: 1000, 1500 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1Zune2">
       <summary>
-            Returns the preset "VC-1 Zune 2," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 320, Auto. Video Bitrate: 1000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Zune 2" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 320, Auto. Video Bitrate: 1000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1Zune2AVDockPlayback">
       <summary>
-            Returns the preset "VC-1 Zune 2 (AV Dock Playback)," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 640, Auto. Video Bitrate: 2000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Zune 2 (AV Dock Playback)" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 640, Auto. Video Bitrate: 2000, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 128,192 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1ZuneHD">
       <summary>
-            Returns the preset "VC-1 Zune HD," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 480, Auto. Video Bitrate: 1500, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Zune HD" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 480, Auto. Video Bitrate: 1500, 3000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 192,288 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.VC1ZuneHDAVDockPlayback">
       <summary>
-            Returns the preset "VC-1 Zune HD (AV Dock Playback)," and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1280, Auto. Video Bitrate: 6100, 12000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128,576 Kbps. Audio Encoding: VBR Constrained.
+            Returns the preset "VC-1 Zune HD (AV Dock Playback)" and applies the settings that follow. Output Format: Windows Media. Container: WMV. Video Codec: VC-1 Main Profile. Video size: 1280, Auto. Video Bitrate: 6100, 12000 Kbps. Video Encoding: VBR Constrained. Audio Codec: WMA. Audio Channels: 5.1. Audio Bitrate: 128,576 Kbps. Audio Encoding: VBR Constrained.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMABestQualityVBR">
       <summary>
-            Returns the preset "WMA Best Quality VBR," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Encoding: Quality VBR. Audio Quality: 90.
+            Returns the preset "WMA Best Quality VBR" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Encoding: Quality VBR. Audio Quality: 90.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMAGoodQualityAudio">
       <summary>
-            Returns the preset "WMA Good Quality Audio," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "WMA Good Quality Audio" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 96 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMAHighQualityAudio">
       <summary>
-            Returns the preset "WMA High Quality Audio," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "WMA High Quality Audio" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 160 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMALossless51Audio">
       <summary>
-            Returns the preset "WMA Lossless 5.1 Audio," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: 5.1. Audio Encoding: Quality VBR. Audio Quality: 100.
+            Returns the preset "WMA Lossless 5.1 Audio" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: 5.1. Audio Encoding: Quality VBR. Audio Quality: 100.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMALowQualityAudio">
       <summary>
-            Returns the preset "WMA Low Quality Audio," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "WMA Low Quality Audio" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Stereo. Audio Bitrate: 64 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.WMAVoiceAudio">
       <summary>
-            Returns the preset "WMA Voice Audio," and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Mono. Audio Bitrate: 16 Kbps. Audio Encoding: CBR Single Pass.
+            Returns the preset "WMA Voice Audio" and applies the settings that follow. Output Format: Windows Media. Audio Codec: WMA. Audio Channels: Mono. Audio Bitrate: 16 Kbps. Audio Encoding: CBR Single Pass.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Presets.SourceProfile">
       <summary>
-            Returns the preset "WMA Voice Audio," and applies the setting that follows. Output Format: Apply source profile as encoding profile.
+            Returns the preset "WMA Voice Audio" and applies the setting that follows. Output Format: Apply source profile as encoding profile.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.PresetNotFoundException">
@@ -3018,13 +3610,23 @@
     <member name="M:Microsoft.Expression.Encoder.Profiles.AacAudioProfile.#ctor">
       <summary>
             Initializes a new instance of the AacAudioProfile class. 
-            It defaults to 160 Kbps
+            It defaults to 160 Kbps.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.AacAudioProfile.#ctor(Microsoft.Expression.Encoder.Profiles.Bitrate,System.Int32,System.Int32,System.Int32)">
       <summary>
             Initializes a new instance of the AacAudioProfile class.
             </summary>
+      <param name="bitrate">The bitrate to use to initialize the class.</param>
+      <param name="channels">The channels to use to initialize the class.</param>
+      <param name="samplesPerSecond">The samples per second to use to initialize the class.</param>
+      <param name="bitsPerSample">The bits per sample to use to initialize the class.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.AacAudioProfile.#ctor(Microsoft.Expression.Encoder.Profiles.AacLevel,Microsoft.Expression.Encoder.Profiles.Bitrate,System.Int32,System.Int32,System.Int32)">
+      <summary>
+            Initializes a new instance of the AacAudioProfile class.
+            </summary>
+      <param name="level">The AAC level to use to initialize the class.</param>
       <param name="bitrate">The bitrate to use to initialize the class.</param>
       <param name="channels">The channels to use to initialize the class.</param>
       <param name="samplesPerSecond">The samples per second to use to initialize the class.</param>
@@ -3041,6 +3643,11 @@
             Makes a deep copy of the video profile object.
             </summary>
       <returns>The copied object.</returns>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.AacAudioProfile.Level">
+      <summary>
+            Gets or sets the AAC Level
+            </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.AacAudioProfile.Bitrate">
       <summary>
@@ -3114,14 +3721,14 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.SimpleVC1VideoProfile.SmoothStreaming">
       <summary>
-            Gets or sets a value indicating whether the profile uses smooth streaming.
+            Gets or sets a value indicating whether the profile uses Smooth Streaming.
             Note that if you're using VC-1, setting this property to true will cause the following properties to be set as follows.
             ClosedGop to true, AdaptiveGop to false, and OutputMode to
             ElementaryStreamSequenceHeader.  When using Smooth Streaming, the bitrate of each stream must
             either be all ConstantBitrate or all VariableConstrainedBitrate.
-            When using H264, setting this property to true will cause SceneChangeDetector to be set to false
+            When using H264, setting this property to true will cause SceneChangeDetector to be set to false.
             </summary>
-      <remarks>Note that when using smooth streaming with a VariableConstrainedBitrate the following properties are ignored, 
+      <remarks>Note that when using Smooth Streaming with a VariableConstrainedBitrate the following properties are ignored, 
             as they are set automatically when encoding.
             AdaptiveDeadZone, BFrameCount, Complexity, DenoiseFilter, DifferentialQuantization, InLoopFilter, 
             MotionChromaSearch, MotionMatchMethod, MotionSearchRange, NoiseEdgeRemovalFilter, OverlapSmoothingFilter,
@@ -3251,14 +3858,14 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.AdvancedVC1VideoProfile.SmoothStreaming">
       <summary>
-            Gets or sets a value indicating whether the profile uses smooth streaming.
+            Gets or sets a value indicating whether the profile uses Smooth Streaming.
             Note that if you're using VC-1, setting this property to true will cause the following properties to be set as follows:
             ClosedGop to be set to true, and OutputMode to ElementaryStreamSequenceHeader. 
             When using Smooth Streaming the bitrate of each stream must
             be either all ConstantBitrate or all VariableConstrainedBitrate.
             When using H264, setting this property to true will cause SceneChangeDetector to be set to false.        
             </summary>
-      <remarks>Note that when you are using smooth streaming with a VariableConstrainedBitrate, the following properties are ignored 
+      <remarks>Note that when you are using Smooth Streaming with a VariableConstrainedBitrate, the following properties are ignored 
             because they are set automatically during encoding:
             AdaptiveDeadZone, BFrameCount, Complexity, DenoiseFilter, DifferentialQuantization, InLoopFilter, 
             MotionChromaSearch, MotionMatchMethod, MotionSearchRange, NoiseEdgeRemovalFilter, OverlapSmoothingFilter,
@@ -3279,7 +3886,7 @@
     <member name="P:Microsoft.Expression.Encoder.Profiles.AdvancedVC1VideoProfile.OptimizeForAnimation">
       <summary>
             Gets or sets a value indicating whether the encoding should be optimized for animation.
-            Only effective if encoding to smooth streaming with a variable bit rate.
+            Only effective if encoding to Smooth Streaming with a variable bit rate.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.AudioProfileCollection">
@@ -3313,6 +3920,11 @@
             </summary>
       <returns>The copied object.</returns>
     </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.BaselineH264VideoProfile.LevelForStream(System.Int32)">
+      <summary>
+            Gets the lowest level given the current settings.
+            </summary>
+    </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.BaselineH264VideoProfile.RDOptimizationMode">
       <summary>
             Gets or sets a value indicating what RDOptimization mode is on
@@ -3336,11 +3948,13 @@
     <member name="P:Microsoft.Expression.Encoder.Profiles.BaselineH264VideoProfile.ReferenceBFrames">
       <summary>
             Gets or sets a value indicating whether ReferenceBFrames is turned on.
+            This value is ignored if H264 GPU encoding is enabled.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.BaselineH264VideoProfile.AdaptiveBFrames">
       <summary>
             Gets or sets a value indicating whether sequence complexity determines B-frame placement.
+            This value is ignored if H264 GPU encoding is enabled.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.BaselineH264VideoProfile.SceneChangeDetector">
@@ -3535,6 +4149,82 @@
             or constant (false).
             </summary>
     </member>
+    <member name="T:Microsoft.Expression.Encoder.Profiles.XmlAudioProfile">
+      <summary>
+            A class that represents a Windows Media Audio profile.
+            </summary>
+    </member>
+    <member name="T:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile">
+      <summary>
+            A class that represents a Windows Media Audio profile.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.#ctor">
+      <summary>
+            Initializes a new instance of the WmaAudioProfile class. 
+            It defaults to 192 Kbps CD Quality.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.#ctor(Microsoft.Expression.Encoder.Profiles.WmaAudioProfile)">
+      <summary>
+            Initializes a new instance of the WmaAudioProfile class.
+            </summary>
+      <param name="profile">The profile to use to initialize this class.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Clone">
+      <summary>
+            Makes a deep copy of the video profile object.
+            </summary>
+      <returns>The copied object.</returns>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Bitrate">
+      <summary>
+            Gets or sets the bitrate to use when encoding.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Codec">
+      <summary>
+            Gets or sets the value of the audio codec that this profile uses.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Channels">
+      <summary>
+            Gets or sets the number of channels for this profile.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.BitsPerSample">
+      <summary>
+            Gets or sets the number of bits in each sample for this profile.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.SamplesPerSecond">
+      <summary>
+            Gets or sets the number of samples per second for this profile.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.StreamCopyOnly">
+      <summary>
+            Gets a value indicating whether this profile supports only stream copying.
+            This can happen if the decoder is installed but the encoder is not installed.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.IsValid">
+      <summary>
+            Gets a value indicating whether the current profile settings are valid.
+            </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.XmlAudioProfile.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the WmaAudioProfile class from an XML description.
+            </summary>
+      <param name="streamConfigXml">The XML description that is used in a PRX file.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.XmlAudioProfile.Clone">
+      <summary>
+            Makes a deep copy of the video profile object.
+            </summary>
+      <returns>The copied object.</returns>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.HighH264VideoProfile">
       <summary>
             Used to specify the high H.264 video profile.
@@ -3570,6 +4260,12 @@
       <summary>
             Initializes a new instance of the HighH264VideoProfile class.
             </summary>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.HighH264VideoProfile.Clone">
+      <summary>
+            Makes a deep copy of the video profile object.
+            </summary>
+      <returns>The copied object.</returns>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.StreamCollection">
       <summary>
@@ -3749,7 +4445,7 @@
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate">
       <summary>
-            Is used to specify a variable unconstrained bitrate.
+            Used to specify a variable unconstrained bitrate.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate.#ctor(System.Int32)">
@@ -3757,6 +4453,13 @@
             Initializes a new instance of the VariableUnconstrainedBitrate class.
             </summary>
       <param name="averageBitrate">The average bitrate in Kbps to use.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate.#ctor(System.Int32,System.Boolean)">
+      <summary>
+            Initializes a new instance of the VariableUnconstrainedBitrate class.
+            </summary>
+      <param name="averageBitrate">The average bitrate in Kbps to use.</param>
+      <param name="twoPassEncoding">Whether two-pass encoding should be used.</param>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate.op_Equality(Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate,Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate)">
       <summary>
@@ -3799,13 +4502,12 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate.IsTwoPass">
       <summary>
-            Gets a value indicating whether Expression Encoder has to do two-pass encoding,
-            which is required for variable unconstrained.
+            Gets a value indicating whether Expression Encoder has to do two-pass encoding
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Profiles.VariableUnconstrainedBitrate.IsVariableBitrate">
       <summary>
-            Gets a value indicating whether the birate is variable (true) 
+            Gets a value indicating whether the bitrate is variable (true) 
             or constant (false).
             </summary>
     </member>
@@ -3822,6 +4524,15 @@
             </summary>
       <param name="averageBitrate">The average bitrate in Kbps.</param>
       <param name="peakBitrate">The peak bitrate to use, in Kbps.</param>
+      <param name="peakBufferWindow">The peak buffer window. </param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Profiles.VariableConstrainedBitrate.#ctor(System.Int32,System.Int32,System.TimeSpan,System.Boolean)">
+      <summary>
+            Initializes a new instance of the VariableConstrainedBitrate class.
+            </summary>
+      <param name="averageBitrate">The average bitrate in Kbps.</param>
+      <param name="peakBitrate">The peak bitrate to use, in Kbps.</param>
+      <param name="twoPassEncoding">Whether two-pass encoding should be used.</param>
       <param name="peakBufferWindow">The peak buffer window. </param>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.VariableConstrainedBitrate.op_Equality(Microsoft.Expression.Encoder.Profiles.VariableConstrainedBitrate,Microsoft.Expression.Encoder.Profiles.VariableConstrainedBitrate)">
@@ -3865,7 +4576,7 @@
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.VariableQualityBitrate">
       <summary>
-            Is used to specify a variable quality bitrate.
+            Used to specify a variable quality bitrate.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Profiles.VariableQualityBitrate.#ctor(System.Int32)">
@@ -3918,65 +4629,6 @@
       <summary>
             Gets a value indicating whether the bitrate is variable (true) 
             or constant (false).
-            </summary>
-    </member>
-    <member name="T:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile">
-      <summary>
-            A class that represents a Windows Media Audio profile.
-            </summary>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.#ctor">
-      <summary>
-            Initializes a new instance of the WmaAudioProfile class. 
-            It defaults to 192 Kbps CD Quality.
-            </summary>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.#ctor(Microsoft.Expression.Encoder.Profiles.WmaAudioProfile)">
-      <summary>
-            Initializes a new instance of the WmaAudioProfile class.
-            </summary>
-      <param name="profile">The profile to use to initialize this class.</param>
-    </member>
-    <member name="M:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Clone">
-      <summary>
-            Makes a deep copy of the video profile object.
-            </summary>
-      <returns>The copied object.</returns>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Bitrate">
-      <summary>
-            Gets or sets the bitrate to use when encoding.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Codec">
-      <summary>
-            Gets or sets the value of the audio codec that this profile uses.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.Channels">
-      <summary>
-            Gets or sets the number of channels for this profile.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.BitsPerSample">
-      <summary>
-            Gets or sets the number of bits in each sample for this profile.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.SamplesPerSecond">
-      <summary>
-            Gets or sets the number of samples per second for this profile.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.StreamCopyOnly">
-      <summary>
-            Gets a value indicating whether this profile supports only stream copying.
-            This can happen if the decoder is installed but the encoder is not installed.
-            </summary>
-    </member>
-    <member name="P:Microsoft.Expression.Encoder.Profiles.WmaAudioProfile.IsValid">
-      <summary>
-            Gets a value indicating whether the current profile settings are valid.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Profiles.XmlVideoProfile">
@@ -4045,7 +4697,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Source.AudioStreamIndex">
       <summary>
-            The audio stream to render.
+            Gets or sets the audio stream to render.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.SourceCollection">
@@ -4077,7 +4729,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.SourceCollection.IsValid">
       <summary>
-            Determines whether all the Source clips arrays are valid.
+            Determines whether all the source clips arrays are valid.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.SourceCollection.PlaybackDuration">
@@ -4199,7 +4851,7 @@
     </member>
     <member name="T:Microsoft.Expression.Encoder.ConvertErrorException">
       <summary>
-            Error Exception used inside the transcoder for errors that should be shown to the user.
+            Error exception used inside the transcoder for errors that should be shown to the user.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.ConvertErrorException.#ctor">
@@ -4333,8 +4985,8 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Live.LiveJob.ActivateSource(Microsoft.Expression.Encoder.Live.LiveSource)">
       <summary>
-            Starts playback of a new source. You can switch to a source only when the
-            encode is running.
+            Starts playback of a new source. You can switch to a source when the encode
+            is running. A source must be set as the active one before beginning encode.
             </summary>
       <param name="source">The source to be activated.</param>
     </member>
@@ -4376,8 +5028,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Live.LiveJob.AddScriptCommand(System.String,System.String)">
       <summary>
-            Adds a new script command to the job. Adding a script command to the job
-            ensures that it gets persisted.
+            Adds a new script command to the job.
             </summary>
       <param name="type">The type of the command to add.</param>
       <param name="command">The command to perform.</param>
@@ -4416,6 +5067,11 @@
             IDisposable finalizer.
             </summary>
       <param name="disposing">When false, cleans up only managed. When true, cleans up both.</param>
+    </member>
+    <member name="M:Microsoft.Expression.Encoder.Live.LiveJob.CalcStreamEncodeTypes">
+      <summary>
+            Get the current encode stream type that each video stream is currently in
+            </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.FileSources">
       <summary>
@@ -4466,7 +5122,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.DeinterlaceMode">
       <summary>
-            Gets or sets the deinterlace mode. The default is AutoBob, which is recommended.
+            Gets or sets the deinterlace mode.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.MaxPacketSize">
@@ -4482,6 +5138,11 @@
     <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.WindowsMediaProfileLanguage">
       <summary>
             Get or sets the language of the Windows Media profile for ASF files.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.SrsAudio">
+      <summary>
+            Gets or sets a value indicating whether Srs Audio 5.1 audio resampling will be used.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Live.LiveJob.NormalizeAudio">
@@ -4550,22 +5211,22 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.EncoderSku.Standard">
       <summary>
-            Expression Encoder Standard.
+            Expression Encoder Standard version.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.EncoderSku.ProNoCodecs">
       <summary>
-            Expression Encoder Full Version Without Codecs.
+            Expression Encoder full version without codecs.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.EncoderSku.Pro">
       <summary>
-            Expression Encoder Full Version.
+            Expression Encoder full version.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Settings">
       <summary>
-            Used to determine if this is a Standard SKU, and if it can be used to delete the media import cache.
+            Used to determine if this is a standard SKU, and if it can be used to delete the media import cache.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Settings.DeleteMediaCache">
@@ -4644,7 +5305,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Plugins.EncoderPlugin.OnJobLoad(Microsoft.Expression.Encoder.JobBase)">
       <summary>
-            Is called when a job is loaded.  In the UI the MediaItems may not be loaded yet.
+            Is called when a job is loaded.  In the UI, the MediaItems may not be loaded yet.
             </summary>
       <param name="job">
       </param>
@@ -5049,14 +5710,14 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Plugins.Templates.TemplatePlugin.CreatePreviewControl">
       <summary>
-            Create the preview control
+            Creates the preview control.
             </summary>
       <returns>
       </returns>
     </member>
     <member name="M:Microsoft.Expression.Encoder.Plugins.Templates.TemplatePlugin.CreateUserInterface">
       <summary>
-            Create the user interface
+            Creates the user interface.
             </summary>
       <returns>
       </returns>
@@ -5074,17 +5735,17 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.TemplatePlugin.DataModal">
       <summary>
-            Get the data modal
+            Gets the data model.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.TemplatePlugin.TemplateParameters">
       <summary>
-            Get the template parameters.
+            Gets the template parameters.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Plugins.Templates.TemplateUIAttribute">
       <summary>
-            Attribute set on a DataModal property to have the property shown in the default UI.
+            Attributes set on a DataModel property to have the property shown in the default UI.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.TemplateUIAttribute.Caption">
@@ -5190,7 +5851,7 @@
     </member>
     <member name="T:Microsoft.Expression.Encoder.DrmErrorException">
       <summary>
-            Error Exception that is thrown if a file with DRM is imported.
+            Error exception that is thrown if a file with DRM is imported.
             </summary>
     </member>
     <member name="M:Microsoft.Expression.Encoder.DrmErrorException.#ctor">
@@ -5611,6 +6272,11 @@
       <param name="message">The error message that explains the reason for the exception.</param>
       <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
     </member>
+    <member name="T:Microsoft.Expression.Encoder.Templates.ExperienceContexts">
+      <summary>
+            Enum representing experience context.
+            </summary>
+    </member>
     <member name="T:Microsoft.Expression.Encoder.Templates.TemplateParameter">
       <summary>
             Class representing a template parameter.
@@ -5673,6 +6339,11 @@
       <summary>
             Gets a value indicating whether the template parameter is read-only.
             Implies Hidden.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Templates.TemplateParameter.ExperienceContexts">
+      <summary>
+            Get value indicating in which experienceContexts this parameter is relevant.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Templates.TemplateParameter.EnumList">
@@ -5847,7 +6518,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.OverlayLoopingGap">
       <summary>
-            Gets or sets the duration of the time that is taken before the overlay loops.
+            Gets or sets the duration of the time that passes before the overlay loops.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.OverlayFadeInDuration">
@@ -5872,7 +6543,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.OverlayEndTime">
       <summary>
-            Gets or sets the timespan when the overlay should end.
+            Gets or sets the time that the overlay should end.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.OverlayAudioGainLevel">
@@ -5917,7 +6588,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.AudioOverlayEndTime">
       <summary>
-            Gets or sets the time when the audio overlay should end.
+            Gets or sets the time that the audio overlay should end.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.AudioOverlayGainLevel">
@@ -5953,6 +6624,11 @@
     <member name="P:Microsoft.Expression.Encoder.MediaItem.AudioGainLevel">
       <summary>
             Gets or sets the audio gain level.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.MediaItem.SrsAudio">
+      <summary>
+            Gets or sets a value indicating whether Srs Audio 5.1 audio resampling will be used.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.SourceVideoProfile">
@@ -6059,7 +6735,7 @@
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.Name">
       <summary>
-            Gets the name, which is the file name of the item without the extension.
+            Gets the file name of the item, without the extension.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.MediaItem.SourceFileName">
@@ -6206,7 +6882,7 @@
     </member>
     <member name="M:Microsoft.Expression.Encoder.Plugins.Templates.PublishedMarkerCollection.#ctor(System.Collections.Generic.IList{Microsoft.Expression.Encoder.Plugins.Templates.PublishedMarker})">
       <summary>
-            Initializes a new instance of the PublishedMarkerCollection.
+            Initializes a new instance of the PublishedMarkerCollection class.
             </summary>
       <param name="list">The list of published markers to initialize the class with.</param>
     </member>
@@ -6228,6 +6904,11 @@
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedCaptionFile.FileName">
       <summary>
             Gets the file name of the caption file.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedCaptionFile.Label">
+      <summary>
+            Gets the label of the caption file.
             </summary>
     </member>
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedCaptionFile.Culture">
@@ -6273,6 +6954,16 @@
     <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedItem.ScriptCommands">
       <summary>
             Gets the script commands.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedItem.IsLive">
+      <summary>
+            Gets or sets the live flag.
+            </summary>
+    </member>
+    <member name="P:Microsoft.Expression.Encoder.Plugins.Templates.PublishedItem.IsSrsAudio">
+      <summary>
+            Gets a value indicating whether the item use Srs Audio.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.XmlErrorException">
@@ -6379,12 +7070,12 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.Silverlight10">
       <summary>
-            This template requires a version of Silverlight not earlier than Silverlight 1.0.
+            This template requires Silverlight version 1.0 or later.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.Silverlight20">
       <summary>
-            This template requires a version of Silverlight not earlier than Silverlight 2.0.
+            This template requires Silverlight version 2.0 or later.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.AdaptiveStreaming">
@@ -6399,12 +7090,22 @@
     </member>
     <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.Silverlight30">
       <summary>
-            This template requires a version of Silverlight not earlier than Silverlight 3.0.
+            This template requires Silverlight version 3.0 or later.
             </summary>
     </member>
     <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.Silverlight40">
       <summary>
-            This template requires a version of Silverlight not earlier than Silverlight 4.0.
+            This template requires Silverlight version 4.0 or later.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.Live">
+      <summary>
+            This template is Live enabled.
+            </summary>
+    </member>
+    <member name="F:Microsoft.Expression.Encoder.Templates.TemplateCapabilities.HighDefinitionChannelAac">
+      <summary>
+            This template supports High Definition AAC.
             </summary>
     </member>
     <member name="T:Microsoft.Expression.Encoder.Templates.Template">

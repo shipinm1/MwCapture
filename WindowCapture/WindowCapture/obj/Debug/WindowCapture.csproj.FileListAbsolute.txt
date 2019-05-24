@@ -115,3 +115,33 @@ C:\Users\kykel\Desktop\MwCapture\WindowCapture\WindowCapture\bin\Debug\AxInterop
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\Interop.WMPLib.dll
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\kykel\Desktop\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.ResolveComReference.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\WindowCapture.exe.config
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\WindowCapture.exe
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\WindowCapture.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\RadialMenu.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\WpfControlLibrary1.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Utilities.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Types.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\WpfControlLibrary1.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.xml
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.dll.config
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\RadialMenu.pdb
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Utilities.xml
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Microsoft.Expression.Encoder.Types.xml
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\Interop.WMPLib.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csprojAssemblyReference.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\Interop.WMPLib.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.ResolveComReference.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.MWC.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.CAPTURE.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.SETTING.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.Properties.Resources.resources
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.GenerateResource.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.exe.licenses
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CoreCompileInputs.cache
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.csproj.CopyComplete
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.exe
+C:\Users\gsp\Desktop\zhou da\MwCapture\WindowCapture\WindowCapture\obj\Debug\WindowCapture.pdb

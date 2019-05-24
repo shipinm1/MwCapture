@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DWMApi.cs" />
     <Compile Include="MWC.cs">
       <SubType>Form</SubType>
     </Compile>
